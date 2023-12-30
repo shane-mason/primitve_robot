@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2q2kbs3a3ecy"]
+
+[ext_resource type="Script" path="res://scripts/HintBox.gd" id="1_dpdu6"]
+[ext_resource type="AudioStream" uid="uid://bh0g6yhjmfyuw" path="res://sfx/soft-click.wav" id="2_1u301"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4xd1"]
+size = Vector3(3, 5, 3)
+
+[node name="HintBox" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.0041, 2.20114, 0)
+script = ExtResource("1_dpdu6")
+hint_text = "Space to Jump!"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_r4xd1")
+
+[node name="SFXEntered" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_1u301")
+volume_db = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

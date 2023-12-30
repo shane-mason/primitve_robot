@@ -1,0 +1,203 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0q3sm2bhvl2y"]
+
+[ext_resource type="PackedScene" uid="uid://cjloldcop32bq" path="res://scenes/ground_med.tscn" id="1_qk0ek"]
+[ext_resource type="PackedScene" uid="uid://cwckk8n5klfeh" path="res://scenes/ground_long.tscn" id="2_kvq4v"]
+[ext_resource type="PackedScene" uid="uid://dduqeq0lryqi8" path="res://scenes/ground_short.tscn" id="3_v1ghm"]
+[ext_resource type="PackedScene" uid="uid://bp1dxpkbn2hkx" path="res://scenes/robot_hero.tscn" id="4_2yrvv"]
+[ext_resource type="PackedScene" uid="uid://ccje6er8gfr8e" path="res://scenes/chip_path.tscn" id="5_e1qwf"]
+[ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="6_n77mw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xhal1"]
+size = Vector3(200, 100, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47xmp"]
+albedo_color = Color(0.027451, 0.0352941, 0.0666667, 1)
+roughness = 0.52
+
+[sub_resource type="Environment" id="Environment_6d782"]
+tonemap_mode = 1
+glow_bloom = 0.36
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_ec7mm"]
+
+[sub_resource type="Curve3D" id="Curve3D_pxibc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -220, 0, 0, 0, 0, 0, 0, 0, 0, -220, 0, -20, 0, 0, 0, 0, 0, 0, 0, 0, -20, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="World" type="Node3D"]
+
+[node name="GroundNodes" type="Node3D" parent="."]
+
+[node name="Ground-long" parent="GroundNodes" instance=ExtResource("2_kvq4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Ground-long2" parent="GroundNodes" instance=ExtResource("2_kvq4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.4147, 0, 0)
+
+[node name="Ground-med" parent="GroundNodes" instance=ExtResource("1_qk0ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.523, 0, 0)
+
+[node name="Ground-med2" parent="GroundNodes" instance=ExtResource("1_qk0ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.8233, 0, 0)
+
+[node name="Ground-short" parent="GroundNodes" instance=ExtResource("3_v1ghm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.1365, 1.14465, 0)
+
+[node name="Ground-short2" parent="GroundNodes" instance=ExtResource("3_v1ghm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.2264, 2.92233, 0)
+
+[node name="RobotHero" parent="." instance=ExtResource("4_2yrvv")]
+unique_name_in_owner = true
+speed = 10.0
+jump_velocity = 8
+
+[node name="Back Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9977)
+mesh = SubResource("BoxMesh_xhal1")
+surface_material_override/0 = SubResource("StandardMaterial3D_47xmp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.932179, -0.156175, 0.326577, 0, 0.902149, 0.431425, -0.361999, -0.402165, 0.840964, -15.6695, 23.3725, 17.539)
+shadow_bias = 2.289
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6d782")
+camera_attributes = SubResource("CameraAttributesPhysical_ec7mm")
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+
+[node name="ChipPathPoints" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, 8, -8.51903)
+curve = SubResource("Curve3D_pxibc")
+
+[node name="ChipPath" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+backwards = true
+
+[node name="ChipPath2" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -39.9999, 0, 0)
+progress = 40.0
+backwards = true
+
+[node name="ChipPath3" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80, 0, 0)
+progress = 80.0
+backwards = true
+
+[node name="ChipPath4" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -120, 0, 0)
+progress = 120.0
+backwards = true
+
+[node name="ChipPath5" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -160, 0, 0)
+progress = 160.0
+backwards = true
+
+[node name="ChipPath6" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -200, 0, 0)
+progress = 200.0
+backwards = true
+
+[node name="ChipPath7" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(1, 0, -0.000300631, 0, 1, 0, 0.000300631, 0, 1, -220, 0, -20)
+progress = 240.0
+backwards = true
+
+[node name="ChipPath8" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -180, 0, -20)
+progress = 280.0
+backwards = true
+
+[node name="ChipPath9" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -140, 0, -20)
+progress = 320.0
+backwards = true
+
+[node name="ChipPath10" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -100, 0, -20)
+progress = 360.0
+backwards = true
+
+[node name="ChipPath11" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -60, 0, -20)
+progress = 400.0
+backwards = true
+
+[node name="ChipPath12" parent="ChipPathPoints" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 0, -20)
+progress = 440.0
+backwards = true
+
+[node name="ChipPathPoints2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, -7.66602, -8.51903)
+curve = SubResource("Curve3D_pxibc")
+
+[node name="ChipPath" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+speed = 0.15
+
+[node name="ChipPath2" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -39.9999, 0, 0)
+progress = 40.0
+speed = 0.15
+
+[node name="ChipPath3" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80, 0, 0)
+progress = 80.0
+speed = 0.15
+
+[node name="ChipPath4" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -120, 0, 0)
+progress = 120.0
+speed = 0.15
+
+[node name="ChipPath5" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -160, 0, 0)
+progress = 160.0
+speed = 0.15
+
+[node name="ChipPath6" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -200, 0, 0)
+progress = 200.0
+speed = 0.15
+
+[node name="ChipPath7" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(1, 0, -0.000300631, 0, 1, 0, 0.000300631, 0, 1, -220, 0, -20)
+progress = 240.0
+speed = 0.15
+
+[node name="ChipPath8" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -180, 0, -20)
+progress = 280.0
+speed = 0.15
+
+[node name="ChipPath9" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -140, 0, -20)
+progress = 320.0
+speed = 0.15
+
+[node name="ChipPath10" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -100, 0, -20)
+progress = 360.0
+speed = 0.15
+
+[node name="ChipPath11" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -60, 0, -20)
+progress = 400.0
+speed = 0.15
+
+[node name="ChipPath12" parent="ChipPathPoints2" instance=ExtResource("5_e1qwf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 0, -20)
+progress = 440.0
+speed = 0.15
+
+[node name="PlayerCamera" type="Camera3D" parent="." node_paths=PackedStringArray("followNode")]
+transform = Transform3D(1, 0, 0, 0, 0.984196, 0.177085, 0, -0.177085, 0.984196, 8, 9.486, 9)
+current = true
+script = ExtResource("6_n77mw")
+followNode = NodePath("../RobotHero")

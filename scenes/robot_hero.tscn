@@ -1,0 +1,161 @@
+[gd_scene load_steps=23 format=3 uid="uid://bp1dxpkbn2hkx"]
+
+[ext_resource type="Script" path="res://scripts/RobotHero.gd" id="1_a7liv"]
+[ext_resource type="AudioStream" uid="uid://cq4kdshgo2oda" path="res://sfx/motor.wav" id="2_jtg7i"]
+[ext_resource type="AudioStream" uid="uid://daxadvgofcscl" path="res://sfx/jump.wav" id="3_70eca"]
+[ext_resource type="AudioStream" uid="uid://bic13l6hsojea" path="res://sfx/thud.wav" id="4_l464o"]
+[ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="4_yexk6"]
+
+[sub_resource type="Gradient" id="Gradient_el07r"]
+colors = PackedColorArray(2.88785e-07, 0.25218, 0.49694, 1, 0.681528, 0.841264, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3wkjt"]
+radius = 0.4
+height = 2.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eju4p"]
+albedo_color = Color(0.252724, 3.04186e-05, 0.240416, 1)
+metallic = 0.22
+roughness = 0.39
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_laffg"]
+material = SubResource("StandardMaterial3D_eju4p")
+height = 0.2
+radial_segments = 10
+
+[sub_resource type="Gradient" id="Gradient_engim"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cp4u2"]
+gradient = SubResource("Gradient_engim")
+
+[sub_resource type="Curve" id="Curve_0xfub"]
+_data = [Vector2(0.763251, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ok53"]
+curve = SubResource("Curve_0xfub")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ds67b"]
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0.2, 0.2)
+particle_flag_rotate_y = true
+direction = Vector3(-0.3, 1, 0)
+spread = 20.0
+flatness = 1.0
+initial_velocity_min = 5.0
+initial_velocity_max = 6.0
+scale_curve = SubResource("CurveTexture_5ok53")
+color_ramp = SubResource("GradientTexture1D_cp4u2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g28x7"]
+albedo_color = Color(0, 0.627451, 0.996078, 1)
+emission_enabled = true
+emission = Color(0.0352941, 0.105882, 0.184314, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="BoxMesh" id="BoxMesh_lqipt"]
+material = SubResource("StandardMaterial3D_g28x7")
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rpqk5"]
+albedo_color = Color(0.545098, 0, 0.521569, 1)
+metallic = 0.3
+roughness = 0.35
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kxib4"]
+material = SubResource("StandardMaterial3D_rpqk5")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.1
+radial_segments = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lc2f"]
+albedo_color = Color(0.543817, 0.000152093, 0.52049, 1)
+metallic = 0.18
+roughness = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_cpece"]
+material = SubResource("StandardMaterial3D_7lc2f")
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6l13"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tlrhc"]
+material = SubResource("StandardMaterial3D_x6l13")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="RobotHero" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.41742, 0)
+script = ExtResource("1_a7liv")
+eye_ramp = SubResource("Gradient_el07r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.147574, 0)
+shape = SubResource("CapsuleShape3D_3wkjt")
+
+[node name="BodyParts" type="Node3D" parent="."]
+
+[node name="WheelMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, -0.798206, 0)
+mesh = SubResource("CylinderMesh_laffg")
+skeleton = NodePath("../..")
+
+[node name="WheelParticles" type="GPUParticles3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -1.2, 0)
+amount = 16
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ds67b")
+draw_pass_1 = SubResource("BoxMesh_lqipt")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.253386, 0)
+mesh = SubResource("CylinderMesh_kxib4")
+skeleton = NodePath("../..")
+
+[node name="HeadMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684517, 0)
+mesh = SubResource("SphereMesh_cpece")
+skeleton = NodePath("../..")
+
+[node name="EyeMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.232026, 0.746215, 0)
+mesh = SubResource("BoxMesh_tlrhc")
+skeleton = NodePath("../..")
+
+[node name="SFXMotor" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_jtg7i")
+volume_db = -12.0
+pitch_scale = 0.75
+
+[node name="SFXJump" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_70eca")
+volume_db = -10.0
+
+[node name="SFXFell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l464o")
+volume_db = -8.0
+pitch_scale = 0.5
+
+[node name="HintLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
+billboard = 1
+double_sided = false
+alpha_antialiasing_mode = 1
+modulate = Color(0.701961, 0.854902, 1, 1)
+text = "A to move left, 
+B to move right"
+font = ExtResource("4_yexk6")
+font_size = 120
+outline_size = 0
+
+[node name="TimerHint" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="finished" from="SFXFell" to="." method="_on_sfx_fell_finished"]
+[connection signal="timeout" from="TimerHint" to="." method="_on_timer_hint_timeout"]

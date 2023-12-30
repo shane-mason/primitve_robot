@@ -1,0 +1,148 @@
+[gd_scene load_steps=5 format=3 uid="uid://bobn80h6wpkot"]
+
+[ext_resource type="PackedScene" uid="uid://ccje6er8gfr8e" path="res://scenes/chip_path.tscn" id="1_7hdi0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xhal1"]
+size = Vector3(200, 100, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47xmp"]
+albedo_color = Color(0.027451, 0.0352941, 0.0666667, 1)
+roughness = 0.52
+
+[sub_resource type="Curve3D" id="Curve3D_pxibc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -220, 0, 0, 0, 0, 0, 0, 0, 0, -220, 0, -20, 0, 0, 0, 0, 0, 0, 0, 0, -20, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Back Wall" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9977)
+mesh = SubResource("BoxMesh_xhal1")
+surface_material_override/0 = SubResource("StandardMaterial3D_47xmp")
+
+[node name="ChipPathPoints" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, 8, 9.47867)
+curve = SubResource("Curve3D_pxibc")
+
+[node name="ChipPath" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+backwards = true
+
+[node name="ChipPath2" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -39.9999, 0, 0)
+progress = 40.0
+backwards = true
+
+[node name="ChipPath3" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80, 0, 0)
+progress = 80.0
+backwards = true
+
+[node name="ChipPath4" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -120, 0, 0)
+progress = 120.0
+backwards = true
+
+[node name="ChipPath5" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -160, 0, 0)
+progress = 160.0
+backwards = true
+
+[node name="ChipPath6" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -200, 0, 0)
+progress = 200.0
+backwards = true
+
+[node name="ChipPath7" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(1, 0, -0.000300631, 0, 1, 0, 0.000300631, 0, 1, -220, 0, -20)
+progress = 240.0
+backwards = true
+
+[node name="ChipPath8" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -180, 0, -20)
+progress = 280.0
+backwards = true
+
+[node name="ChipPath9" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -140, 0, -20)
+progress = 320.0
+backwards = true
+
+[node name="ChipPath10" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -100, 0, -20)
+progress = 360.0
+backwards = true
+
+[node name="ChipPath11" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -60, 0, -20)
+progress = 400.0
+backwards = true
+
+[node name="ChipPath12" parent="ChipPathPoints" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 0, -20)
+progress = 440.0
+backwards = true
+
+[node name="ChipPathPoints2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, -7.66602, 9.47867)
+curve = SubResource("Curve3D_pxibc")
+
+[node name="ChipPath" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+speed = 0.15
+
+[node name="ChipPath2" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -39.9999, 0, 0)
+progress = 40.0
+speed = 0.15
+
+[node name="ChipPath3" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80, 0, 0)
+progress = 80.0
+speed = 0.15
+
+[node name="ChipPath4" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -120, 0, 0)
+progress = 120.0
+speed = 0.15
+
+[node name="ChipPath5" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -160, 0, 0)
+progress = 160.0
+speed = 0.15
+
+[node name="ChipPath6" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -200, 0, 0)
+progress = 200.0
+speed = 0.15
+
+[node name="ChipPath7" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(1, 0, -0.000300631, 0, 1, 0, 0.000300631, 0, 1, -220, 0, -20)
+progress = 240.0
+speed = 0.15
+
+[node name="ChipPath8" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -180, 0, -20)
+progress = 280.0
+speed = 0.15
+
+[node name="ChipPath9" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -140, 0, -20)
+progress = 320.0
+speed = 0.15
+
+[node name="ChipPath10" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -100, 0, -20)
+progress = 360.0
+speed = 0.15
+
+[node name="ChipPath11" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -60, 0, -20)
+progress = 400.0
+speed = 0.15
+
+[node name="ChipPath12" parent="ChipPathPoints2" instance=ExtResource("1_7hdi0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 0, -20)
+progress = 440.0
+speed = 0.15

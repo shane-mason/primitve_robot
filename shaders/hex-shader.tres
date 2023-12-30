@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cml1dofbkir88"]
+
+[ext_resource type="Shader" path="res://shaders/l2.gdshader" id="1_brm0m"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_brm0m")
+shader_parameter/scale = 30.0
+shader_parameter/radius = 1.0
+shader_parameter/offset = 0.268
+shader_parameter/power = 3.0
+shader_parameter/hide_incomplete = false
+shader_parameter/color = Color(0, 0.6, 1, 1)

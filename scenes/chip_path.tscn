@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccje6er8gfr8e"]
+
+[ext_resource type="Script" path="res://scripts/PassingObjects.gd" id="1_023ap"]
+[ext_resource type="PackedScene" uid="uid://c47shc5xob2sb" path="res://scenes/passing_chip.tscn" id="2_00qau"]
+
+[node name="ChipPath" type="PathFollow3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+rotation_mode = 1
+script = ExtResource("1_023ap")
+
+[node name="PassingChip" parent="." instance=ExtResource("2_00qau")]

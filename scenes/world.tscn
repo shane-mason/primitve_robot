@@ -1,0 +1,264 @@
+[gd_scene load_steps=28 format=3 uid="uid://d0q3sm2bhvl2y"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_omtkj"]
+[ext_resource type="PackedScene" uid="uid://cjloldcop32bq" path="res://scenes/ground_med.tscn" id="1_qk0ek"]
+[ext_resource type="PackedScene" uid="uid://cwckk8n5klfeh" path="res://scenes/ground_long.tscn" id="2_kvq4v"]
+[ext_resource type="PackedScene" uid="uid://dduqeq0lryqi8" path="res://scenes/ground_short.tscn" id="3_v1ghm"]
+[ext_resource type="PackedScene" uid="uid://bp1dxpkbn2hkx" path="res://scenes/robot_hero.tscn" id="4_2yrvv"]
+[ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="4_d4xdw"]
+[ext_resource type="PackedScene" uid="uid://chberix27la8a" path="res://scenes/ground_giant.tscn" id="4_nb687"]
+[ext_resource type="PackedScene" uid="uid://l28b364w5kx5" path="res://scenes/ground_tiny.tscn" id="5_3e13k"]
+[ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="6_n77mw"]
+[ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="8_is0l6"]
+[ext_resource type="PackedScene" uid="uid://d2q2kbs3a3ecy" path="res://scenes/hint_box.tscn" id="9_nf8dg"]
+[ext_resource type="AudioStream" uid="uid://dy8twi8nd7yld" path="res://sfx/bot-music.ogg" id="10_2p6mb"]
+[ext_resource type="AudioStream" uid="uid://diyvqabptc57" path="res://sfx/start.wav" id="11_nj46b"]
+[ext_resource type="Script" path="res://scripts/LevelEnd.gd" id="13_apkki"]
+[ext_resource type="AudioStream" uid="uid://6ldcy66ssx2c" path="res://sfx/laserShoot.wav" id="14_phl6j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0i6q"]
+sky_top_color = Color(0.596078, 0.0196078, 0.470588, 1)
+sky_horizon_color = Color(0.85098, 0.431373, 0.741176, 1)
+ground_bottom_color = Color(0.270588, 0, 0.372549, 1)
+ground_horizon_color = Color(0.852605, 0.430173, 0.740552, 1)
+
+[sub_resource type="Sky" id="Sky_8itwd"]
+sky_material = SubResource("ProceduralSkyMaterial_a0i6q")
+
+[sub_resource type="Environment" id="Environment_6d782"]
+background_mode = 2
+sky = SubResource("Sky_8itwd")
+tonemap_mode = 3
+glow_bloom = 0.36
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_ec7mm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hui3p"]
+size = Vector3(9, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4t0st"]
+albedo_color = Color(0, 0.494118, 0.733333, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bjfa5"]
+material = SubResource("StandardMaterial3D_4t0st")
+size = Vector3(8, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6le8"]
+albedo_color = Color(0, 0.192157, 0.364706, 1)
+metallic = 0.32
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_2kdve"]
+material = SubResource("StandardMaterial3D_a6le8")
+size = Vector3(2, 4, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piyjj"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.4
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_ck184"]
+material = SubResource("StandardMaterial3D_piyjj")
+size = Vector3(1, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_16v37"]
+size = Vector3(4, 4, 4)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_omtkj")
+
+[node name="GroundNodes" type="Node3D" parent="."]
+
+[node name="Ground-long" parent="GroundNodes" instance=ExtResource("2_kvq4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7499, 0, 0)
+
+[node name="Ground-long4" parent="GroundNodes" instance=ExtResource("2_kvq4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6517, 0, 0)
+
+[node name="Ground-long2" parent="GroundNodes" instance=ExtResource("2_kvq4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.4147, 0, 0)
+
+[node name="Ground-long3" parent="GroundNodes" instance=ExtResource("2_kvq4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120.223, 0, 0)
+
+[node name="Ground-med2" parent="GroundNodes" instance=ExtResource("1_qk0ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5191, 0, 0)
+
+[node name="Ground-short" parent="GroundNodes" instance=ExtResource("3_v1ghm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.7684, 2.60708, 0)
+
+[node name="Ground-short2" parent="GroundNodes" instance=ExtResource("3_v1ghm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.2264, 2.92233, 0)
+
+[node name="Ground-med3" parent="GroundNodes" instance=ExtResource("1_qk0ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.253, -5.83615, 0)
+
+[node name="Ground-med4" parent="GroundNodes" instance=ExtResource("1_qk0ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 162.012, -5.83615, 0)
+
+[node name="Ground-short3" parent="GroundNodes" instance=ExtResource("3_v1ghm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 173.433, -3.56769, 0)
+
+[node name="Ground-short4" parent="GroundNodes" instance=ExtResource("3_v1ghm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.323, -1.70881, 0)
+
+[node name="Ground-short5" parent="GroundNodes" instance=ExtResource("3_v1ghm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 189.237, 0, 0)
+
+[node name="Ground-short6" parent="GroundNodes" instance=ExtResource("3_v1ghm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 196.913, 3.57677, 0)
+
+[node name="Ground-giant" parent="GroundNodes" instance=ExtResource("4_nb687")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.9832, 0, 0)
+
+[node name="Ground-giant2" parent="GroundNodes" instance=ExtResource("4_nb687")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 287.664, 0, 0)
+
+[node name="Ground-tiny3" parent="GroundNodes" instance=ExtResource("5_3e13k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250.895, 0, 0)
+
+[node name="Ground-med" parent="GroundNodes" instance=ExtResource("1_qk0ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 208.085, 6.57992, 0)
+
+[node name="Ground-med5" parent="GroundNodes" instance=ExtResource("1_qk0ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 222, 0.095, 0)
+
+[node name="Ground-med6" parent="GroundNodes" instance=ExtResource("1_qk0ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 237.539, 0.095, 0)
+
+[node name="WallNodes" type="Node3D" parent="."]
+
+[node name="Back Wall" parent="WallNodes" instance=ExtResource("4_d4xdw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+skeleton = NodePath("../..")
+
+[node name="Back Wall3" parent="WallNodes" instance=ExtResource("4_d4xdw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 287.823, 0, -30)
+skeleton = NodePath("../..")
+
+[node name="Back Wall2" parent="WallNodes" instance=ExtResource("4_d4xdw")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 143.678, 0, -60)
+skeleton = NodePath("../..")
+
+[node name="Back Wall4" parent="WallNodes" instance=ExtResource("4_d4xdw")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 428.515, 0, -60)
+skeleton = NodePath("../..")
+
+[node name="RobotHero" parent="." instance=ExtResource("4_2yrvv")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.7181, 1.98712, 0.000793457)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.932179, -0.156175, 0.326577, 0, 0.902149, 0.431425, -0.361999, -0.402165, 0.840964, -15.6695, 23.3725, 17.539)
+shadow_bias = 2.289
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6d782")
+camera_attributes = SubResource("CameraAttributesPhysical_ec7mm")
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+
+[node name="PlayerCamera" type="Camera3D" parent="." node_paths=PackedStringArray("followNode")]
+transform = Transform3D(1, 0, 0, 0, 0.984196, 0.177085, 0, -0.177085, 0.984196, 8, 9.486, 8)
+current = true
+script = ExtResource("6_n77mw")
+followNode = NodePath("../RobotHero")
+
+[node name="Replicator" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.6387, 3.3097, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Replicator"]
+shape = SubResource("BoxShape3D_hui3p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Replicator"]
+mesh = SubResource("BoxMesh_bjfa5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Replicator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25277, -0.80472, 0)
+mesh = SubResource("BoxMesh_2kdve")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Replicator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68586, 2.70434, 0)
+mesh = SubResource("BoxMesh_ck184")
+
+[node name="Label3D" type="Label3D" parent="Replicator"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.21907, 2.69875, -3.8147e-06)
+modulate = Color(0, 0.494118, 0.858824, 1)
+outline_modulate = Color(0.709804, 0.870588, 1, 1)
+text = "DEFENDER REPLICATOR
+0x1972"
+font = ExtResource("8_is0l6")
+font_size = 77
+outline_size = 2
+
+[node name="Replicator2" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 320.604, 3.3097, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Replicator2"]
+shape = SubResource("BoxShape3D_hui3p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Replicator2"]
+mesh = SubResource("BoxMesh_bjfa5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Replicator2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25277, -0.80472, 0)
+mesh = SubResource("BoxMesh_2kdve")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Replicator2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68586, 2.70434, 0)
+mesh = SubResource("BoxMesh_ck184")
+
+[node name="Label3D" type="Label3D" parent="Replicator2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.21907, 2.69875, -3.8147e-06)
+modulate = Color(0, 0.494118, 0.858824, 1)
+outline_modulate = Color(0.709804, 0.870588, 1, 1)
+text = "DEFENDER COMMAND
+0x1976"
+font = ExtResource("8_is0l6")
+font_size = 77
+outline_size = 2
+
+[node name="Hints" type="Node3D" parent="."]
+
+[node name="HintBox" parent="Hints" instance=ExtResource("9_nf8dg")]
+
+[node name="HintBox2" parent="Hints" instance=ExtResource("9_nf8dg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6643, 2.20114, 0)
+hint_text = "Hold Space to Jump Far!!"
+
+[node name="HintBox3" parent="Hints" instance=ExtResource("9_nf8dg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.5315, 3.0991, 0)
+hint_text = "Get to Defender Command!"
+
+[node name="LevelEnd" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.2219, 2.5366, 0)
+script = ExtResource("13_apkki")
+hint_text = "You made it!"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEnd"]
+shape = SubResource("BoxShape3D_16v37")
+
+[node name="SFXEntered" type="AudioStreamPlayer" parent="LevelEnd"]
+stream = ExtResource("14_phl6j")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="StartMusic" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="SFXMusic" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_2p6mb")
+volume_db = -18.0
+
+[node name="SFXStart" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("11_nj46b")
+volume_db = -8.0
+autoplay = true
+
+[connection signal="body_entered" from="LevelEnd" to="LevelEnd" method="_on_body_entered"]
+[connection signal="timeout" from="Timers/StartMusic" to="." method="_on_start_music_timeout"]

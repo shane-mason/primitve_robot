@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://c47shc5xob2sb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4sl6"]
+transparency = 4
+albedo_color = Color(0.14902, 0.14902, 0.14902, 0.65098)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f3lid"]
+material = SubResource("StandardMaterial3D_m4sl6")
+size = Vector3(10, 10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5i8i"]
+albedo_color = Color(0.431373, 0, 0.690196, 1)
+roughness = 0.37
+
+[sub_resource type="BoxMesh" id="BoxMesh_o0252"]
+material = SubResource("StandardMaterial3D_v5i8i")
+size = Vector3(4, 4, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yktli"]
+albedo_color = Color(0, 0.482353, 0.952941, 1)
+metallic = 0.45
+roughness = 0.44
+emission_enabled = true
+emission_energy_multiplier = 1.53
+
+[sub_resource type="BoxMesh" id="BoxMesh_58sqa"]
+material = SubResource("StandardMaterial3D_yktli")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dihd"]
+albedo_color = Color(0.717647, 0, 0, 1)
+metallic = 0.55
+roughness = 0.48
+emission_enabled = true
+clearcoat_enabled = true
+backlight_enabled = true
+backlight = Color(0.603922, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xbwxt"]
+material = SubResource("StandardMaterial3D_3dihd")
+top_radius = 1.0
+bottom_radius = 1.0
+radial_segments = 10
+
+[node name="PassingChip" type="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_f3lid")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15761, -1.75548, 0.555338)
+mesh = SubResource("BoxMesh_o0252")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06677, 2.33542, 0.550571)
+mesh = SubResource("BoxMesh_58sqa")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.39007, 2.32058, 0.520158)
+mesh = SubResource("CylinderMesh_xbwxt")
