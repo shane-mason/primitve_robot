@@ -58,3 +58,8 @@ mesh = SubResource("BoxMesh_58sqa")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.39007, 2.32058, 0.520158)
 mesh = SubResource("CylinderMesh_xbwxt")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32074e-07, 0, -5.30923)
+light_color = Color(0.745098, 0.235294, 1, 1)
+omni_range = 8.884

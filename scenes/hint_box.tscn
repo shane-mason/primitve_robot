@@ -7,7 +7,6 @@
 size = Vector3(3, 5, 3)
 
 [node name="HintBox" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.0041, 2.20114, 0)
 script = ExtResource("1_dpdu6")
 hint_text = "Space to Jump!"
 metadata/_edit_group_ = true
