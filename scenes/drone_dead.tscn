@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbqwoh8p80mn5"]
+
+[ext_resource type="AudioStream" uid="uid://bwl5sdobk4gek" path="res://sfx/splash.wav" id="1_rnisp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d8eyg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rq3y1"]
+albedo_color = Color(0.490196, 0.341176, 0.188235, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dmsoi"]
+material = SubResource("StandardMaterial3D_rq3y1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8vb0"]
+albedo_color = Color(0.592157, 0.223529, 0, 1)
+emission = Color(0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a4wfq"]
+material = SubResource("StandardMaterial3D_y8vb0")
+size = Vector3(1, 0.3, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0nauj"]
+size = Vector3(1, 0.3, 0.4)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_d8eyg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_dmsoi")
+
+[node name="MeshEyes" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217548, 0)
+mesh = SubResource("BoxMesh_a4wfq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+shape = SubResource("BoxShape3D_0nauj")
+
+[node name="SFXShot" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_rnisp")
+autoplay = true

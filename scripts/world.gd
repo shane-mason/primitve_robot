@@ -5,17 +5,24 @@ extends Node3D
 func _ready():
 	$Timers/StartMusic.start()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("ui_cancel"):
+		print("Escape")
+		get_tree().paused = not get_tree().paused
+		$PauseMenu.visible = not $PauseMenu.visible
+	if Input.is_action_just_pressed('quit'):
+		get_tree().change_scene_to_file("res://scenes/start_world.tscn")
 
 func level_end():
 	$RobotHero.wind_down()
 	$Timers/LevelEndTimer.start()
 	
-func player_dead():
+func player_fell():
 	get_tree().reload_current_scene()
+	
+func player_got_hit():
+	$RobotHero.explode()
 	
 func _on_start_music_timeout():
 	$SFX/SFXMusic.play()
@@ -27,7 +34,7 @@ func _on_floor_boundary_body_entered(body):
 
 
 func _on_dead_timer_timeout():
-	player_dead()
+	player_fell()
 
 
 func _on_level_end_timer_timeout():

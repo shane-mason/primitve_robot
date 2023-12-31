@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsshygdjwmuwu"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_28j5v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtaeq"]
+transparency = 1
+albedo_color = Color(0, 0.862745, 0.862745, 0.498039)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x21tg"]
+material = SubResource("StandardMaterial3D_dtaeq")
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dptnf"]
+radius = 0.2
+
+[node name="Bullet" type="RigidBody3D"]
+script = ExtResource("1_28j5v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_x21tg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_dptnf")
+
+[node name="TimerLife" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="TimerLife" to="." method="_on_timer_life_timeout"]

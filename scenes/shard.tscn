@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=3 uid="uid://bkf2jsyw2ujji"]
+
+[ext_resource type="Script" path="res://scripts/shard.gd" id="1_ktorg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80lhq"]
+albedo_color = Color(0.54902, 0, 0.54902, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_1ili5"]
+material = SubResource("StandardMaterial3D_80lhq")
+size = Vector3(1, 0.5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_elblo"]
+size = Vector3(0.5, 0.5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkri2"]
+albedo_color = Color(0.360784, 0, 0.360784, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_r2ge0"]
+material = SubResource("StandardMaterial3D_fkri2")
+size = Vector3(0.3, 1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gqudk"]
+size = Vector3(0.1, 0.8, 0.1)
+
+[sub_resource type="Curve" id="Curve_v1mnh"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.508009, 3.78946), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_o6dt0"]
+curve = SubResource("Curve_v1mnh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j01bb"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 34.78
+angular_velocity_min = -212.88
+angular_velocity_max = 194.1
+angle_min = -50.1
+angle_max = 62.6
+angle_curve = SubResource("CurveTexture_o6dt0")
+scale_min = 0.3
+scale_max = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3dgy"]
+albedo_color = Color(0.548709, 0.000219091, 0.549593, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_blk73"]
+material = SubResource("StandardMaterial3D_e3dgy")
+size = Vector3(0.5, 0.5, 0.1)
+
+[node name="Shards" type="Node3D"]
+script = ExtResource("1_ktorg")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(0.79958, 0.493101, 0.342816, -0.60056, 0.656511, 0.456423, 0, -0.570828, 0.82107, 0, 0, -0.509739)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, -8.506e-09, 1.22349e-08, 0, 1, -2.98023e-08, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PrismMesh_1ili5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_elblo")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(0.94865, -0.259727, -0.180569, 0.316328, 0.778907, 0.541516, 0, -0.570828, 0.821069, 0.616424, 0.362116, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
+mesh = SubResource("PrismMesh_r2ge0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("BoxShape3D_gqudk")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+transform = Transform3D(0.94865, -0.259727, -0.180569, -0.115935, -0.816579, 0.565471, -0.294317, -0.5155, -0.804759, -0.147504, 0.796653, 0.117891)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3"]
+mesh = SubResource("PrismMesh_r2ge0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
+shape = SubResource("BoxShape3D_gqudk")
+
+[node name="RigidBody3D5" type="RigidBody3D" parent="."]
+transform = Transform3D(0.94865, -0.259727, -0.180569, -0.115935, -0.816579, 0.565471, -0.294317, -0.5155, -0.804759, 0.357647, 0.796653, -0.283004)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D5"]
+mesh = SubResource("PrismMesh_r2ge0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D5"]
+shape = SubResource("BoxShape3D_gqudk")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="."]
+transform = Transform3D(0.94865, -0.259727, -0.180569, 0.0267997, -0.502786, 0.863995, -0.315191, -0.824468, -0.470007, 1.32038, 0.796653, 0.249654)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4"]
+transform = Transform3D(1, 1.49012e-08, 1.49012e-08, 1.49012e-08, 1, 2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 0, 0, 0)
+mesh = SubResource("PrismMesh_r2ge0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4"]
+shape = SubResource("BoxShape3D_gqudk")
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 60
+lifetime = 5.0
+one_shot = true
+explosiveness = 0.94
+process_material = SubResource("ParticleProcessMaterial_j01bb")
+draw_pass_1 = SubResource("PrismMesh_blk73")

@@ -1,0 +1,101 @@
+[gd_scene load_steps=15 format=3 uid="uid://b6dcu2jmpom05"]
+
+[ext_resource type="Script" path="res://scripts/drone_bot.gd" id="1_5r2b5"]
+[ext_resource type="AudioStream" uid="uid://buolml8yqi848" path="res://sfx/saw.wav" id="2_urrwx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blkpa"]
+albedo_color = Color(0.948496, 0.519532, 2.11775e-06, 1)
+metallic = 0.46
+roughness = 0.42
+
+[sub_resource type="SphereMesh" id="SphereMesh_y06s8"]
+material = SubResource("StandardMaterial3D_blkpa")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqsot"]
+albedo_color = Color(0.580392, 0.564706, 0.513726, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qdvt8"]
+material = SubResource("StandardMaterial3D_wqsot")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="Animation" id="Animation_qonyy"]
+resource_name = "spin"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshBlade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.3, 1, 0, 1, -0.001, 0, 0.6, 1, 0.001, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6uxm"]
+_data = {
+"spin": SubResource("Animation_qonyy")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn678"]
+albedo_color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tlaxl"]
+material = SubResource("StandardMaterial3D_yn678")
+top_radius = 0.55
+bottom_radius = 0.55
+height = 0.2
+radial_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mpax"]
+albedo_color = Color(0.592157, 0.223529, 0, 1)
+emission_enabled = true
+emission = Color(0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5do11"]
+material = SubResource("StandardMaterial3D_8mpax")
+size = Vector3(1, 0.3, 0.4)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rfjui"]
+height = 0.1
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qr8mw"]
+
+[node name="DroneBot" type="Node3D"]
+script = ExtResource("1_5r2b5")
+
+[node name="MeshBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_y06s8")
+
+[node name="MeshBlade" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0.00173205, 0.866024, -1.16415e-10, 0.999998, -0.002, -0.866025, -0.000999999, -0.499999, 0, 0, 0)
+mesh = SubResource("BoxMesh_qdvt8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c6uxm")
+}
+
+[node name="MeshBand" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.925692, 0, -0.378277, 0, 1, 0, 0.378277, 0, 0.925692, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tlaxl")
+
+[node name="MeshEyes" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217548, 0)
+mesh = SubResource("BoxMesh_5do11")
+
+[node name="DamageArea" type="Area3D" parent="."]
+
+[node name="BladeCollision" type="CollisionShape3D" parent="DamageArea"]
+shape = SubResource("CylinderShape3D_rfjui")
+
+[node name="BulletHitArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletHitArea"]
+shape = SubResource("SphereShape3D_qr8mw")
+
+[node name="SFXEntered" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_urrwx")
+volume_db = 1.905
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_entered" from="BulletHitArea" to="." method="_on_bullet_hit_area_body_entered"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkh2fetxh3n5v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htt5d"]
+albedo_color = Color(0, 0.6, 0.682353, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_72c0o"]
+material = SubResource("StandardMaterial3D_htt5d")
+size = Vector3(0.5, 1.2, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgw6a"]
+albedo_color = Color(0, 0.59966, 0.682846, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uujq8"]
+material = SubResource("StandardMaterial3D_qgw6a")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6eaq"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pv37i"]
+material = SubResource("StandardMaterial3D_q6eaq")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ichrr"]
+albedo_color = Color(0.631373, 0, 0.603922, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yjsaj"]
+material = SubResource("ORMMaterial3D_ichrr")
+height = 0.1
+radial_segments = 10
+
+[node name="BossBot" type="Node3D"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_72c0o")
+
+[node name="MeshHead" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955342, 0)
+mesh = SubResource("BoxMesh_uujq8")
+
+[node name="EyeMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955342, 0.216072)
+mesh = SubResource("BoxMesh_pv37i")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.538492, 0)
+mesh = SubResource("CylinderMesh_yjsaj")

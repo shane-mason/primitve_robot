@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d0q3sm2bhvl2y"]
+[gd_scene load_steps=33 format=3 uid="uid://d0q3sm2bhvl2y"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_omtkj"]
 [ext_resource type="PackedScene" uid="uid://cjloldcop32bq" path="res://scenes/ground_med.tscn" id="1_qk0ek"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://scripts/LevelEnd.gd" id="13_apkki"]
 [ext_resource type="AudioStream" uid="uid://6ldcy66ssx2c" path="res://sfx/laserShoot.wav" id="14_phl6j"]
 [ext_resource type="AudioStream" uid="uid://bic13l6hsojea" path="res://sfx/thud.wav" id="16_ldar0"]
+[ext_resource type="PackedScene" uid="uid://bkf2jsyw2ujji" path="res://scenes/shard.tscn" id="18_om7ld"]
+[ext_resource type="PackedScene" uid="uid://bkh2fetxh3n5v" path="res://scenes/boss_bot.tscn" id="19_ga47d"]
+[ext_resource type="FontFile" uid="uid://c3q6tcjpudthr" path="res://styles/rexlia rg.otf" id="19_w2x7c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0i6q"]
 sky_top_color = Color(0.596078, 0.0196078, 0.470588, 1)
@@ -73,6 +76,7 @@ size = Vector3(4, 4, 4)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fv87w"]
 
 [node name="World" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_omtkj")
 
 [node name="GroundNodes" type="Node3D" parent="."]
@@ -154,9 +158,11 @@ skeleton = NodePath("../..")
 
 [node name="RobotHero" parent="." instance=ExtResource("4_2yrvv")]
 unique_name_in_owner = true
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.7181, 1.98712, 0.000793457)
 body_rotation_speed = 8.0
 wind_down_damper = 0.1
+shard_scene = ExtResource("18_om7ld")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.932179, -0.156175, 0.326577, 0, 0.902149, 0.431425, -0.361999, -0.402165, 0.840964, -15.6695, 23.3725, 17.539)
@@ -170,7 +176,7 @@ camera_attributes = SubResource("CameraAttributesPhysical_ec7mm")
 [node name="LightmapGI" type="LightmapGI" parent="."]
 
 [node name="PlayerCamera" type="Camera3D" parent="." node_paths=PackedStringArray("followNode")]
-transform = Transform3D(1, 0, 0, 0, 0.984196, 0.177085, 0, -0.177085, 0.984196, 8, 9.486, 8)
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 8, 9.486, 8)
 current = true
 script = ExtResource("6_n77mw")
 followNode = NodePath("../RobotHero")
@@ -286,6 +292,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorBoundary"]
 shape = SubResource("WorldBoundaryShape3D_fv87w")
+
+[node name="BossBot" parent="." instance=ExtResource("19_ga47d")]
+transform = Transform3D(0.0546016, 0, -0.998508, 0, 1, 0, 0.998508, 0, 0.0546016, 309.498, 1.59867, 0.0637717)
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.5
+offset_top = -294.0
+offset_right = 184.5
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("19_w2x7c")
+bbcode_enabled = true
+text = "Controls:
+
+Right: 		D or Right Arrow
+Left:			A or Left Arrow
+Jump:		Space
+Shoot:		Shift or Left Mouse Button
+Pause:		Escape
+
+Press Escape to continue the game
+Press Q to Quit to menu"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.5
+offset_top = -129.5
+offset_right = 346.5
+offset_bottom = -34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("8_is0l6")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]ROLLBOT  -- PAUSED[/center]"
 
 [connection signal="body_entered" from="LevelEnd" to="LevelEnd" method="_on_body_entered"]
 [connection signal="timeout" from="Timers/StartMusic" to="." method="_on_start_music_timeout"]

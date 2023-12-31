@@ -1,0 +1,143 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8egekd2icund"]
+
+[ext_resource type="Script" path="res://scripts/start_world.gd" id="1_ylh7o"]
+[ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="7_7rfwb"]
+[ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="11_58j41"]
+[ext_resource type="AudioStream" uid="uid://dy8twi8nd7yld" path="res://sfx/bot-music.ogg" id="15_7vjpx"]
+[ext_resource type="FontFile" uid="uid://c3q6tcjpudthr" path="res://styles/rexlia rg.otf" id="19_42iwg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0i6q"]
+sky_top_color = Color(0.596078, 0.0196078, 0.470588, 1)
+sky_horizon_color = Color(0.85098, 0.431373, 0.741176, 1)
+ground_bottom_color = Color(0.270588, 0, 0.372549, 1)
+ground_horizon_color = Color(0.852605, 0.430173, 0.740552, 1)
+
+[sub_resource type="Sky" id="Sky_8itwd"]
+sky_material = SubResource("ProceduralSkyMaterial_a0i6q")
+
+[sub_resource type="Environment" id="Environment_6d782"]
+background_mode = 2
+sky = SubResource("Sky_8itwd")
+tonemap_mode = 3
+glow_bloom = 0.36
+fog_light_color = Color(0.541176, 0.533333, 0.67451, 1)
+fog_light_energy = 0.5
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_ec7mm"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fv87w"]
+
+[node name="StartWorld" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_ylh7o")
+
+[node name="WallNodes" type="Node3D" parent="."]
+
+[node name="Back Wall" parent="WallNodes" instance=ExtResource("7_7rfwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+skeleton = NodePath("../..")
+
+[node name="Back Wall3" parent="WallNodes" instance=ExtResource("7_7rfwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 287.823, 0, -20)
+skeleton = NodePath("../..")
+
+[node name="Back Wall2" parent="WallNodes" instance=ExtResource("7_7rfwb")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 143.678, 0, -60)
+skeleton = NodePath("../..")
+
+[node name="Back Wall4" parent="WallNodes" instance=ExtResource("7_7rfwb")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 428.515, 0, -60)
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.932179, -0.156175, 0.326577, 0, 0.902149, 0.431425, -0.361999, -0.402165, 0.840964, -15.6695, 23.3725, 17.539)
+shadow_bias = 2.289
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6d782")
+camera_attributes = SubResource("CameraAttributesPhysical_ec7mm")
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="StartMusic" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="DeadTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+
+[node name="LevelEndTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="SFXMusic" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("15_7vjpx")
+volume_db = -18.0
+autoplay = true
+
+[node name="FloorBoundary" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorBoundary"]
+shape = SubResource("WorldBoundaryShape3D_fv87w")
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.5
+offset_top = 40.0
+offset_right = 184.5
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("19_42iwg")
+bbcode_enabled = true
+text = "Controls:
+
+Right: 		D or Right Arrow
+Left:			A or Left Arrow
+Shoot:		Shift or Left Mouse Button
+Jump:		Space
+Pause:		Escape
+
+Press Enter to Start
+Press Q to Quit"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.0
+offset_top = -157.0
+offset_right = 347.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("11_58j41")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]ROLL-BOT
+Attack of the Entities[/center]"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.846314, 0, -0.532684, 0, 1, 0, 0.532684, 0, 0.846314, -37.5725, 0, 2.17972)
+
+[connection signal="timeout" from="Timers/StartMusic" to="." method="_on_start_music_timeout"]
+[connection signal="timeout" from="Timers/DeadTimer" to="." method="_on_dead_timer_timeout"]
+[connection signal="timeout" from="Timers/LevelEndTimer" to="." method="_on_level_end_timer_timeout"]
+[connection signal="body_entered" from="FloorBoundary" to="." method="_on_floor_boundary_body_entered"]
