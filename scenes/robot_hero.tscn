@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bp1dxpkbn2hkx"]
+[gd_scene load_steps=24 format=3 uid="uid://bp1dxpkbn2hkx"]
 
 [ext_resource type="Script" path="res://scripts/RobotHero.gd" id="1_a7liv"]
 [ext_resource type="AudioStream" uid="uid://cq4kdshgo2oda" path="res://sfx/motor.wav" id="2_jtg7i"]
@@ -83,6 +83,18 @@ height = 0.6
 material = SubResource("StandardMaterial3D_x6l13")
 size = Vector3(0.25, 0.25, 0.25)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mere6"]
+direction = Vector3(1, 0.1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la7wv"]
+albedo_color = Color(0, 0.878431, 0.882353, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_11wci"]
+material = SubResource("StandardMaterial3D_la7wv")
+size = Vector3(0.05, 0.05, 0.05)
+
 [node name="RobotHero" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.41742, 0)
 script = ExtResource("1_a7liv")
@@ -122,6 +134,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.232026, 0.746215, 0)
 mesh = SubResource("BoxMesh_tlrhc")
 skeleton = NodePath("../..")
 
+[node name="ShootParticles" type="GPUParticles3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.75, 0)
+emitting = false
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.82
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_mere6")
+draw_pass_1 = SubResource("PrismMesh_11wci")
+
 [node name="ShootingPoint" type="Node3D" parent="BodyParts"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.75, 0)
 
@@ -160,6 +182,11 @@ one_shot = true
 wait_time = 0.33
 one_shot = true
 
+[node name="TimerShoot" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="finished" from="SFXFell" to="." method="_on_sfx_fell_finished"]
 [connection signal="timeout" from="TimerHint" to="." method="_on_timer_hint_timeout"]
 [connection signal="timeout" from="TimerDead" to="." method="_on_timer_dead_timeout"]
+[connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]

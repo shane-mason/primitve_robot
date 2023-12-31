@@ -1,0 +1,176 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1aac4vrmjj1q"]
+
+[ext_resource type="PackedScene" uid="uid://ccje6er8gfr8e" path="res://scenes/chip_path.tscn" id="1_rvvd7"]
+[ext_resource type="PackedScene" uid="uid://7txfm4lt8q5b" path="res://scenes/ball_path.tscn" id="2_2eywp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bp3u2"]
+albedo_color = Color(0.309804, 0, 0.25098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xhal1"]
+material = SubResource("StandardMaterial3D_bp3u2")
+size = Vector3(200, 100, 5)
+
+[sub_resource type="Curve3D" id="Curve3D_pxibc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, -218, 0, -2, 0, 0, 0, 0, 0, 0, -218, 0, -18, 0, 0, 0, 0, 0, 0, 0, 0, -18, 0, 0, 0, 0, 0, 0, 0, 0, -2),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_u6hsf"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 55, -5, 0, 0, 0, 0, 0, 0, 0, 55, 5, 0, 0, 0, 0, 0, 0, 0, -55, 5, 0, 0, 0, 0, 0, 0, 0, -55, -5, 0, 0, 0, 0, 0, 0, 0, 55, -5),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Back Wall" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_xhal1")
+
+[node name="ChipPathPoints" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, 8, 9.47867)
+curve = SubResource("Curve3D_pxibc")
+
+[node name="ChipPath" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -2)
+backwards = true
+
+[node name="ChipPath2" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -40, 0, -2)
+progress = 40.0
+backwards = true
+
+[node name="ChipPath3" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80, 0, -2)
+progress = 80.0
+backwards = true
+
+[node name="ChipPath4" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -120, 0, -2)
+progress = 120.0
+backwards = true
+
+[node name="ChipPath5" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -160, 0, -2)
+progress = 160.0
+backwards = true
+
+[node name="ChipPath6" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -200, 0, -2)
+progress = 200.0
+backwards = true
+
+[node name="ChipPath7" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -212, 0, -18)
+progress = 240.0
+backwards = true
+
+[node name="ChipPath8" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -172, 0, -18)
+progress = 280.0
+backwards = true
+
+[node name="ChipPath9" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -132, 0, -18)
+progress = 320.0
+backwards = true
+
+[node name="ChipPath10" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -92.0003, 0, -18)
+progress = 360.0
+backwards = true
+
+[node name="ChipPath11" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -51.9999, 0, -18)
+progress = 400.0
+backwards = true
+
+[node name="ChipPath12" parent="ChipPathPoints" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.9999, 0, -18)
+progress = 440.0
+backwards = true
+
+[node name="ChipPathPoints2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, -7.66602, 9.47867)
+curve = SubResource("Curve3D_pxibc")
+
+[node name="ChipPath" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -2)
+speed = 0.15
+
+[node name="ChipPath2" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -40, 0, -2)
+progress = 40.0
+speed = 0.15
+
+[node name="ChipPath3" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80, 0, -2)
+progress = 80.0
+speed = 0.15
+
+[node name="ChipPath4" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -120, 0, -2)
+progress = 120.0
+speed = 0.15
+
+[node name="ChipPath5" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -160, 0, -2)
+progress = 160.0
+speed = 0.15
+
+[node name="ChipPath6" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -200, 0, -2)
+progress = 200.0
+speed = 0.15
+
+[node name="ChipPath7" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -212, 0, -18)
+progress = 240.0
+speed = 0.15
+
+[node name="ChipPath8" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -172, 0, -18)
+progress = 280.0
+speed = 0.15
+
+[node name="ChipPath9" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -132, 0, -18)
+progress = 320.0
+speed = 0.15
+
+[node name="ChipPath10" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -92.0003, 0, -18)
+progress = 360.0
+speed = 0.15
+
+[node name="ChipPath11" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -51.9999, 0, -18)
+progress = 400.0
+speed = 0.15
+
+[node name="ChipPath12" parent="ChipPathPoints2" instance=ExtResource("1_rvvd7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.9999, 0, -18)
+progress = 440.0
+speed = 0.15
+
+[node name="BallPathPoints" type="Path3D" parent="."]
+curve = SubResource("Curve3D_u6hsf")
+
+[node name="BallPath" parent="BallPathPoints" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 55, -5)
+speed = 0.5
+
+[node name="BallPath2" parent="BallPathPoints" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 45.0002, -5)
+progress = 230.0
+speed = 0.5
+
+[node name="BallPath3" parent="BallPathPoints" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 35.0001, -5)
+progress = 220.0
+speed = 0.5
+
+[node name="BallPath4" parent="BallPathPoints" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25.0001, -5)
+progress = 210.0
+speed = 0.5

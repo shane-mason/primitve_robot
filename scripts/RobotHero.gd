@@ -24,7 +24,8 @@ enum MotionState{
 	idle_left,
 	move_left,
 	move_right,
-	jump,
+	jump_idle_right,
+	jump_idle_left,
 	jump_left,
 	jump_right,
 	paused,
@@ -108,14 +109,17 @@ func _handle_shoot():
 	if can_shoot and Input.is_action_just_pressed("shoot"):
 		var direction
 		match _new_state:
-			MotionState.move_right, MotionState.jump_right, MotionState.idle_right:
-				direction = Vector3(1,0,0)
+			MotionState.move_right, MotionState.jump_right, MotionState.jump_idle_right, MotionState.idle_right:
+				direction = Vector3(1,.05,0)
 			_:
-				direction = Vector3(-1,0,0)
+				direction = Vector3(-1,.05,0)
 		var instance = _bullet_scene.instantiate()
 		instance.direction = direction
 		instance.global_position = $BodyParts/ShootingPoint.global_position;
+		$BodyParts/ShootParticles.emitting = true
 		get_tree().get_root().get_node("World").add_child(instance)
+		can_shoot = false
+		$TimerShoot.start()
 		
 
 func _handle_state(delta):
@@ -156,11 +160,16 @@ func _handle_state(delta):
 				_new_state = MotionState.jump_left
 	else:
 		if not is_on_floor() or _jump_requested:
-			_new_state = MotionState.jump
+			#then we are idle jumping - which direction?
+			match _prev_state:
+				MotionState.move_right, MotionState.jump_right, MotionState.jump_idle_right, MotionState.idle_right:
+					_new_state = MotionState.jump_idle_right
+				_:
+					_new_state = MotionState.jump_idle_left
 		else:
 			#then we are idle - which direction?
 			match _prev_state:
-				MotionState.move_right, MotionState.jump_right, MotionState.idle_right:
+				MotionState.move_right, MotionState.jump_right, MotionState.jump_idle_right, MotionState.idle_right:
 					_new_state = MotionState.idle_right
 				_:
 					_new_state = MotionState.idle_left
@@ -215,3 +224,7 @@ func _on_sfx_fell_finished():
 
 func _on_timer_dead_timeout():
 	queue_free()
+
+
+func _on_timer_shoot_timeout():
+	can_shoot = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsshygdjwmuwu"]
+[gd_scene load_steps=6 format=3 uid="uid://dsshygdjwmuwu"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_28j5v"]
+[ext_resource type="AudioStream" uid="uid://drb8mdxc2xs88" path="res://sfx/shoot.wav" id="2_m1y24"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtaeq"]
 transparency = 1
@@ -28,5 +29,10 @@ shape = SubResource("SphereShape3D_dptnf")
 [node name="TimerLife" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_m1y24")
+volume_db = 2.889
+autoplay = true
 
 [connection signal="timeout" from="TimerLife" to="." method="_on_timer_life_timeout"]

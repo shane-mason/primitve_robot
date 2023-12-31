@@ -10,6 +10,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if backwards:
-		progress += .1
+		progress += speed
 	else:
-		progress -= .1
+		progress -= speed

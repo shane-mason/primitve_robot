@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://6rebtw1ldnf0"]
+
+[ext_resource type="FontFile" uid="uid://c3q6tcjpudthr" path="res://styles/rexlia rg.otf" id="1_mb4gi"]
+[ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="2_fsjwj"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.5
+offset_top = 40.0
+offset_right = 184.5
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("1_mb4gi")
+bbcode_enabled = true
+text = "Controls:
+
+Right: 		D or Right Arrow
+Left:			A or Left Arrow
+Shoot:		Shift or Left Mouse Button
+Jump:		Space
+Pause:		Escape
+
+Press Enter to Start
+Press Q to Quit"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.0
+offset_top = -157.0
+offset_right = 347.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_fsjwj")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]ROLL-BOT
+Attack of the Entities[/center]"

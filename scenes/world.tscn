@@ -251,7 +251,7 @@ hint_text = "Get to Defender Command!"
 [node name="LevelEnd" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 295.32, 2.5366, 0)
 script = ExtResource("13_apkki")
-hint_text = "You made it!"
+hint_text = "Reporting for duty!"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEnd"]
 shape = SubResource("BoxShape3D_16v37")
@@ -297,6 +297,7 @@ shape = SubResource("WorldBoundaryShape3D_fv87w")
 transform = Transform3D(0.0546016, 0, -0.998508, 0, 1, 0, 0.998508, 0, 0.0546016, 309.498, 1.59867, 0.0637717)
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu"]
 anchors_preset = 7

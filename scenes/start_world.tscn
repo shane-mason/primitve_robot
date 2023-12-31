@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8egekd2icund"]
+[gd_scene load_steps=10 format=3 uid="uid://c8egekd2icund"]
 
 [ext_resource type="Script" path="res://scripts/start_world.gd" id="1_ylh7o"]
+[ext_resource type="AudioStream" uid="uid://cxjynno717p8d" path="res://sfx/bot-music3.ogg" id="3_52bsv"]
+[ext_resource type="PackedScene" uid="uid://6rebtw1ldnf0" path="res://scenes/pause_menu.tscn" id="4_4wceo"]
 [ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="7_7rfwb"]
-[ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="11_58j41"]
-[ext_resource type="AudioStream" uid="uid://dy8twi8nd7yld" path="res://sfx/bot-music.ogg" id="15_7vjpx"]
-[ext_resource type="FontFile" uid="uid://c3q6tcjpudthr" path="res://styles/rexlia rg.otf" id="19_42iwg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0i6q"]
 sky_top_color = Color(0.596078, 0.0196078, 0.470588, 1)
@@ -78,8 +77,8 @@ one_shot = true
 [node name="SFX" type="Node" parent="."]
 
 [node name="SFXMusic" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("15_7vjpx")
-volume_db = -18.0
+stream = ExtResource("3_52bsv")
+volume_db = -10.0
 autoplay = true
 
 [node name="FloorBoundary" type="Area3D" parent="."]
@@ -88,51 +87,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorBoundary"]
 shape = SubResource("WorldBoundaryShape3D_fv87w")
 
-[node name="PauseMenu" type="CanvasLayer" parent="."]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.5
-offset_top = 40.0
-offset_right = 184.5
-offset_bottom = 278.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_fonts/normal_font = ExtResource("19_42iwg")
-bbcode_enabled = true
-text = "Controls:
-
-Right: 		D or Right Arrow
-Left:			A or Left Arrow
-Shoot:		Shift or Left Mouse Button
-Jump:		Space
-Pause:		Escape
-
-Press Enter to Start
-Press Q to Quit"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="PauseMenu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -346.0
-offset_top = -157.0
-offset_right = 347.0
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("11_58j41")
-theme_override_font_sizes/normal_font_size = 70
-bbcode_enabled = true
-text = "[center]ROLL-BOT
-Attack of the Entities[/center]"
+[node name="PauseMenu" parent="." instance=ExtResource("4_4wceo")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.846314, 0, -0.532684, 0, 1, 0, 0.532684, 0, 0.846314, -37.5725, 0, 2.17972)
