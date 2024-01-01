@@ -19,3 +19,4 @@ stream = ExtResource("2_1u301")
 volume_db = 4.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="SFXEntered" to="." method="_on_sfx_entered_finished"]

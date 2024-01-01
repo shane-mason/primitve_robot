@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var swap_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +25,7 @@ func player_fell():
 	
 func player_got_hit():
 	$RobotHero.explode()
+	$Timers/DeadTimer.start()
 	
 func _on_start_music_timeout():
 	$SFX/SFXMusic.play()
@@ -39,4 +41,4 @@ func _on_dead_timer_timeout():
 
 
 func _on_level_end_timer_timeout():
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_packed(swap_scene)

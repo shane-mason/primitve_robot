@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsshygdjwmuwu"]
+[gd_scene load_steps=7 format=3 uid="uid://dsshygdjwmuwu"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_28j5v"]
 [ext_resource type="AudioStream" uid="uid://drb8mdxc2xs88" path="res://sfx/shoot.wav" id="2_m1y24"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lw4ux"]
+bounce = 0.79
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtaeq"]
 transparency = 1
@@ -17,6 +20,7 @@ height = 0.2
 radius = 0.2
 
 [node name="Bullet" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_lw4ux")
 script = ExtResource("1_28j5v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

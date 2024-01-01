@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7txfm4lt8q5b" path="res://scenes/ball_path.tscn" id="2_2eywp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bp3u2"]
-albedo_color = Color(0.309804, 0, 0.25098, 1)
+albedo_color = Color(0.152941, 0, 0.117647, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xhal1"]
 material = SubResource("StandardMaterial3D_bp3u2")
@@ -158,19 +158,91 @@ curve = SubResource("Curve3D_u6hsf")
 
 [node name="BallPath" parent="BallPathPoints" instance=ExtResource("2_2eywp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 55, -5)
-speed = 0.5
 
 [node name="BallPath2" parent="BallPathPoints" instance=ExtResource("2_2eywp")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 45.0002, -5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 45.0001, -5)
 progress = 230.0
-speed = 0.5
 
 [node name="BallPath3" parent="BallPathPoints" instance=ExtResource("2_2eywp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 35.0001, -5)
 progress = 220.0
-speed = 0.5
 
 [node name="BallPath4" parent="BallPathPoints" instance=ExtResource("2_2eywp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25.0001, -5)
 progress = 210.0
-speed = 0.5
+
+[node name="BallPathPoints3" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+curve = SubResource("Curve3D_u6hsf")
+
+[node name="BallPath" parent="BallPathPoints3" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 55, -5)
+
+[node name="BallPath2" parent="BallPathPoints3" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 45.0001, -5)
+progress = 230.0
+
+[node name="BallPath3" parent="BallPathPoints3" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 35.0001, -5)
+progress = 220.0
+
+[node name="BallPath4" parent="BallPathPoints3" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25.0001, -5)
+progress = 210.0
+
+[node name="BallPathPoints5" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 0)
+curve = SubResource("Curve3D_u6hsf")
+
+[node name="BallPath" parent="BallPathPoints5" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 55, -5)
+
+[node name="BallPath2" parent="BallPathPoints5" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 45.0001, -5)
+progress = 230.0
+
+[node name="BallPath3" parent="BallPathPoints5" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 35.0001, -5)
+progress = 220.0
+
+[node name="BallPath4" parent="BallPathPoints5" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25.0001, -5)
+progress = 210.0
+
+[node name="BallPathPoints2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+curve = SubResource("Curve3D_u6hsf")
+
+[node name="BallPath" parent="BallPathPoints2" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 55, -5)
+
+[node name="BallPath2" parent="BallPathPoints2" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 45.0001, -5)
+progress = 230.0
+
+[node name="BallPath3" parent="BallPathPoints2" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 35.0001, -5)
+progress = 220.0
+
+[node name="BallPath4" parent="BallPathPoints2" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25.0001, -5)
+progress = 210.0
+
+[node name="BallPathPoints4" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 0)
+curve = SubResource("Curve3D_u6hsf")
+
+[node name="BallPath" parent="BallPathPoints4" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 55, -5)
+
+[node name="BallPath2" parent="BallPathPoints4" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 45.0001, -5)
+progress = 230.0
+
+[node name="BallPath3" parent="BallPathPoints4" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 35.0001, -5)
+progress = 220.0
+
+[node name="BallPath4" parent="BallPathPoints4" instance=ExtResource("2_2eywp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 25.0001, -5)
+progress = 210.0

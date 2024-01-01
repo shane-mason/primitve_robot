@@ -1,17 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6dcu2jmpom05"]
+[gd_scene load_steps=18 format=3 uid="uid://bjxjohjwg815d"]
 
-[ext_resource type="Script" path="res://scripts/drone_bot.gd" id="1_5r2b5"]
-[ext_resource type="PackedScene" uid="uid://dbqwoh8p80mn5" path="res://scenes/drone_dead.tscn" id="2_2gdtl"]
-[ext_resource type="AudioStream" uid="uid://buolml8yqi848" path="res://sfx/saw.wav" id="2_urrwx"]
-[ext_resource type="AudioStream" uid="uid://ce4dkmyhs1c11" path="res://sfx/shot.wav" id="3_y4jey"]
+[ext_resource type="Script" path="res://scripts/drone_bot.gd" id="1_nxsym"]
+[ext_resource type="AudioStream" uid="uid://buolml8yqi848" path="res://sfx/saw.wav" id="2_a7fpa"]
+[ext_resource type="PackedScene" uid="uid://bpcwa7v867iyu" path="res://scenes/drone_bounce_dead.tscn" id="2_yef60"]
+[ext_resource type="AudioStream" uid="uid://ce4dkmyhs1c11" path="res://sfx/shot.wav" id="3_j4akk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blkpa"]
-albedo_color = Color(0.948496, 0.519532, 2.11775e-06, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nem7d"]
+albedo_color = Color(0.952941, 0, 0.219608, 1)
 metallic = 0.46
 roughness = 0.42
 
 [sub_resource type="SphereMesh" id="SphereMesh_y06s8"]
-material = SubResource("StandardMaterial3D_blkpa")
+material = SubResource("StandardMaterial3D_nem7d")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqsot"]
 albedo_color = Color(0.580392, 0.564706, 0.513726, 1)
@@ -47,13 +47,12 @@ bottom_radius = 0.55
 height = 0.2
 radial_segments = 8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mpax"]
-albedo_color = Color(0.592157, 0.223529, 0, 1)
-emission_enabled = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkgmf"]
+albedo_color = Color(0.592157, 0, 0.0235294, 1)
 emission = Color(0.180392, 0.180392, 0.180392, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_5do11"]
-material = SubResource("StandardMaterial3D_8mpax")
+[sub_resource type="BoxMesh" id="BoxMesh_4dsr5"]
+material = SubResource("StandardMaterial3D_tkgmf")
 size = Vector3(1, 0.3, 0.4)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rfjui"]
@@ -65,15 +64,14 @@ radius = 0.7
 [sub_resource type="BoxShape3D" id="BoxShape3D_mk6ug"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="DroneBot" type="Node3D"]
-script = ExtResource("1_5r2b5")
-dead_scene = ExtResource("2_2gdtl")
+[node name="DroneBotBounce" type="Node3D"]
+script = ExtResource("1_nxsym")
+dead_scene = ExtResource("2_yef60")
 
 [node name="MeshBody" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_y06s8")
 
 [node name="MeshBlade" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0.00173205, 0.866024, -1.16415e-10, 0.999998, -0.002, -0.866025, -0.000999999, -0.499999, 0, 0, 0)
 mesh = SubResource("BoxMesh_qdvt8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -87,7 +85,7 @@ mesh = SubResource("CylinderMesh_tlaxl")
 
 [node name="MeshEyes" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217548, 0)
-mesh = SubResource("BoxMesh_5do11")
+mesh = SubResource("BoxMesh_4dsr5")
 
 [node name="DamageArea" type="Area3D" parent="."]
 
@@ -106,11 +104,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458707, 0)
 shape = SubResource("BoxShape3D_mk6ug")
 
 [node name="SFXEntered" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_urrwx")
+stream = ExtResource("2_a7fpa")
 volume_db = 1.905
 
 [node name="SFXShot" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_y4jey")
+stream = ExtResource("3_j4akk")
 volume_db = 3.81
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

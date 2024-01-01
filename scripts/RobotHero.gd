@@ -13,6 +13,7 @@ extends CharacterBody3D
 @export var shard_scene: PackedScene
 @export var start_paused = false
 @export var can_shoot = true
+@export var initial_hint = "A - Move Left\nB - Move Right"
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") + 16
@@ -44,7 +45,7 @@ func _ready():
 		_prev_state = MotionState.paused
 		_new_state = MotionState.paused
 		
-	$HintLabel.text = "A - Move Left\nB - Move Right"
+	$HintLabel.text = initial_hint
 	$HintLabel.visible = true
 	$TimerHint.start()
 	_bullet_scene = preload("res://scenes/bullet.tscn")
@@ -52,12 +53,16 @@ func _ready():
 	#$SFXMotor.play()
 
 func _handle_jump():
-	velocity.y = jump_velocity
-	#turn the lights on
-	_eye_buffer = 1
+	if is_on_floor():
+		velocity.y = jump_velocity
+		#turn the lights on
+		_eye_buffer = 1
+	elif is_on_wall_only():
+		velocity.y = jump_velocity/2.0
+		_eye_buffer = .5
 	$BodyParts/EyeMesh.mesh.material.albedo_color = eye_ramp.sample(_eye_buffer)
 	$SFXJump.play()
-		
+	
 
 func _handle_eyes():
 	#decrement eyes if we need to
@@ -76,12 +81,18 @@ func _handle_gravity(delta):
 	velocity.y -= gravity * delta
 
 func _handle_wheel():
-	$BodyParts/WheelMesh.rotation_degrees.x += velocity.x;
 	match _new_state:
 		MotionState.move_left, MotionState.move_right:
 			$BodyParts/WheelParticles.emitting = true
 		_:
 			$BodyParts/WheelParticles.emitting = false
+	match _new_state:
+		MotionState.move_left, MotionState.jump_left:
+			$BodyParts/WheelMesh.rotation_degrees.x -= velocity.x;
+		MotionState.move_right, MotionState.jump_right:
+			$BodyParts/WheelMesh.rotation_degrees.x += velocity.x;
+			
+		
 
 func _handle_wind_down():
 	$BodyParts/WheelParticles.emitting = false
@@ -104,13 +115,16 @@ func _handle_rotation():
 			if $BodyParts.rotation_degrees.z < 0:
 				$BodyParts.rotation_degrees.z+=.5
 
+func _handle_z():
+	global_position.z = move_toward(global_position.z, 0 , .001)
+
 	
 func _handle_shoot():
-	if can_shoot and Input.is_action_just_pressed("shoot"):
+	if can_shoot and Input.is_action_pressed("shoot"):
 		var direction
 		match _new_state:
 			MotionState.move_right, MotionState.jump_right, MotionState.jump_idle_right, MotionState.idle_right:
-				direction = Vector3(1,.05,0)
+				direction = Vector3(1,-.2,0)
 			_:
 				direction = Vector3(-1,.05,0)
 		var instance = _bullet_scene.instantiate()
@@ -136,7 +150,7 @@ func _handle_state(delta):
 	var _bump_jump_requested = false
 	var _move_requested = false
 	
-	if Input.is_action_just_pressed("move_jump") and is_on_floor():
+	if Input.is_action_just_pressed("move_jump") and (is_on_floor() or is_on_wall_only()):
 		_jump_requested = true
 	elif Input.is_action_pressed("move_jump"):
 		_bump_jump_requested = true
@@ -186,6 +200,7 @@ func _handle_state(delta):
 	_handle_wheel()
 	_handle_rotation()
 	_handle_shoot()
+	_handle_z()
 	move_and_slide()
 
 func _physics_process(delta):
@@ -207,7 +222,6 @@ func wind_down():
 	_new_state = MotionState.wind_down
 
 func explode():
-	print("Exploding...")
 	$CollisionShape3D.disabled = true
 	var scene = preload("res://scenes/shard.tscn")
 	var instance = scene.instantiate()

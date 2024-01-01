@@ -1,21 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbqwoh8p80mn5"]
+[gd_scene load_steps=10 format=3 uid="uid://cngiyixrx0nc6"]
 
-[ext_resource type="AudioStream" uid="uid://bwl5sdobk4gek" path="res://sfx/splash.wav" id="1_rnisp"]
+[ext_resource type="AudioStream" uid="uid://bwl5sdobk4gek" path="res://sfx/splash.wav" id="1_t8kcr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_d8eyg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmnwc"]
-albedo_color = Color(0.490196, 0.341176, 0.188235, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbeuo"]
+albedo_color = Color(0.160784, 0.309804, 0.180392, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_dmsoi"]
-material = SubResource("StandardMaterial3D_kmnwc")
+material = SubResource("StandardMaterial3D_gbeuo")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fss3p"]
-albedo_color = Color(0.34902, 0.117647, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lbmt"]
+albedo_color = Color(0.160784, 0.14902, 0.133333, 1)
 emission = Color(0.180392, 0.180392, 0.180392, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_a4wfq"]
-material = SubResource("StandardMaterial3D_fss3p")
+material = SubResource("StandardMaterial3D_6lbmt")
 size = Vector3(0.7, 0.3, 0.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v3dna"]
@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113524, 0.217548, 0)
 mesh = SubResource("BoxMesh_a4wfq")
 
 [node name="SFXShot" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("1_rnisp")
+stream = ExtResource("1_t8kcr")
 volume_db = -2.54
 autoplay = true
 

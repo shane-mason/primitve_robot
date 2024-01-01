@@ -17,3 +17,7 @@ func _on_body_entered(body):
 	if body.name == "RobotHero":
 		player_node.show_hint(hint_text)
 		$SFXEntered.play()
+
+
+func _on_sfx_entered_finished():
+	queue_free()

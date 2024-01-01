@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbqwoh8p80mn5"]
+[gd_scene load_steps=10 format=3 uid="uid://bpcwa7v867iyu"]
 
-[ext_resource type="AudioStream" uid="uid://bwl5sdobk4gek" path="res://sfx/splash.wav" id="1_rnisp"]
+[ext_resource type="AudioStream" uid="uid://bwl5sdobk4gek" path="res://sfx/splash.wav" id="1_r3t46"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_d8eyg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmnwc"]
-albedo_color = Color(0.490196, 0.341176, 0.188235, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xly8"]
+albedo_color = Color(0.396078, 0.207843, 0.219608, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_dmsoi"]
-material = SubResource("StandardMaterial3D_kmnwc")
+material = SubResource("StandardMaterial3D_1xly8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fss3p"]
 albedo_color = Color(0.34902, 0.117647, 0, 1)
@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113524, 0.217548, 0)
 mesh = SubResource("BoxMesh_a4wfq")
 
 [node name="SFXShot" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("1_rnisp")
+stream = ExtResource("1_r3t46")
 volume_db = -2.54
 autoplay = true
 

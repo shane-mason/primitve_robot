@@ -19,3 +19,4 @@ func _on_body_entered(body):
 		player_node.show_hint(hint_text)
 		$SFXEntered.play()
 		world_node.level_end()
+		

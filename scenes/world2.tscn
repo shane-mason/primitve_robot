@@ -1,20 +1,27 @@
-[gd_scene load_steps=29 format=3 uid="uid://k4qo3y8eg3im"]
+[gd_scene load_steps=36 format=3 uid="uid://k4qo3y8eg3im"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_ppgaj"]
+[ext_resource type="PackedScene" uid="uid://d1aac4vrmjj1q" path="res://scenes/back_wall_t2.tscn" id="3_wfi2e"]
+[ext_resource type="PackedScene" uid="uid://dqwjxpsqls8sf" path="res://scenes/ground_longest.tscn" id="4_ue0g8"]
 [ext_resource type="PackedScene" uid="uid://chberix27la8a" path="res://scenes/ground_giant.tscn" id="5_o5aog"]
+[ext_resource type="PackedScene" uid="uid://cwckk8n5klfeh" path="res://scenes/ground_long.tscn" id="6_w52bo"]
+[ext_resource type="PackedScene" uid="uid://cjloldcop32bq" path="res://scenes/ground_med.tscn" id="7_lwttg"]
 [ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="7_sx1gy"]
 [ext_resource type="PackedScene" uid="uid://bp1dxpkbn2hkx" path="res://scenes/robot_hero.tscn" id="8_pk1ab"]
+[ext_resource type="PackedScene" uid="uid://dduqeq0lryqi8" path="res://scenes/ground_short.tscn" id="8_rxje8"]
 [ext_resource type="PackedScene" uid="uid://bkf2jsyw2ujji" path="res://scenes/shard.tscn" id="9_ypx1q"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="10_hlhf8"]
 [ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="11_8tn13"]
+[ext_resource type="AudioStream" uid="uid://rwjy1a42ov3c" path="res://sfx/bot-music2.ogg" id="12_6wd3f"]
 [ext_resource type="PackedScene" uid="uid://d2q2kbs3a3ecy" path="res://scenes/hint_box.tscn" id="12_vbjgs"]
 [ext_resource type="Script" path="res://scripts/LevelEnd.gd" id="13_vjw3x"]
 [ext_resource type="AudioStream" uid="uid://6ldcy66ssx2c" path="res://sfx/laserShoot.wav" id="14_rwr58"]
-[ext_resource type="AudioStream" uid="uid://dy8twi8nd7yld" path="res://sfx/bot-music.ogg" id="15_7u0mv"]
 [ext_resource type="AudioStream" uid="uid://diyvqabptc57" path="res://sfx/start.wav" id="16_exw1m"]
+[ext_resource type="PackedScene" uid="uid://b6dcu2jmpom05" path="res://scenes/drone_bot.tscn" id="17_n7frw"]
 [ext_resource type="AudioStream" uid="uid://bic13l6hsojea" path="res://sfx/thud.wav" id="17_pmngy"]
-[ext_resource type="PackedScene" uid="uid://bkh2fetxh3n5v" path="res://scenes/boss_bot.tscn" id="18_e5dts"]
 [ext_resource type="FontFile" uid="uid://c3q6tcjpudthr" path="res://styles/rexlia rg.otf" id="19_evnor"]
+[ext_resource type="PackedScene" uid="uid://bjxjohjwg815d" path="res://scenes/drone_bot_bounce.tscn" id="21_okwhh"]
+[ext_resource type="PackedScene" uid="uid://djb8dt6k7jyoy" path="res://scenes/drone_sway_bot.tscn" id="22_t1atn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0i6q"]
 sky_top_color = Color(0.596078, 0.0196078, 0.470588, 1)
@@ -71,35 +78,9 @@ size = Vector3(4, 4, 4)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fv87w"]
 
-[node name="World2" type="Node3D"]
+[node name="World" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_ppgaj")
-
-[node name="GroundNodes" type="Node3D" parent="."]
-
-[node name="Ground-giant" parent="GroundNodes" instance=ExtResource("5_o5aog")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.9832, 0, 0)
-
-[node name="Ground-giant2" parent="GroundNodes" instance=ExtResource("5_o5aog")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9096, 0, 0)
-
-[node name="WallNodes" type="Node3D" parent="."]
-
-[node name="Back Wall" parent="WallNodes" instance=ExtResource("7_sx1gy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -160.634, 0, -20)
-skeleton = NodePath("../..")
-
-[node name="Back Wall3" parent="WallNodes" instance=ExtResource("7_sx1gy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 287.823, 0, -20)
-skeleton = NodePath("../..")
-
-[node name="Back Wall2" parent="WallNodes" instance=ExtResource("7_sx1gy")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -16.956, 0, -60)
-skeleton = NodePath("../..")
-
-[node name="Back Wall4" parent="WallNodes" instance=ExtResource("7_sx1gy")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 428.515, 0, -60)
-skeleton = NodePath("../..")
 
 [node name="RobotHero" parent="." instance=ExtResource("8_pk1ab")]
 unique_name_in_owner = true
@@ -108,6 +89,78 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.7181, 1.98712, 0.00079345
 body_rotation_speed = 8.0
 wind_down_damper = 0.1
 shard_scene = ExtResource("9_ypx1q")
+initial_hint = "Kill All The Entities!"
+
+[node name="GroundNodes" type="Node3D" parent="."]
+
+[node name="Ground-longest" parent="GroundNodes" instance=ExtResource("4_ue0g8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.8693, 0, 0)
+
+[node name="Ground-longest2" parent="GroundNodes" instance=ExtResource("4_ue0g8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 244.141, 0, 0)
+
+[node name="Ground-longest3" parent="GroundNodes" instance=ExtResource("4_ue0g8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 355.47, 0, 0)
+
+[node name="Ground-longest4" parent="GroundNodes" instance=ExtResource("4_ue0g8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 465.158, 0, 0)
+
+[node name="Ground-giant" parent="GroundNodes" instance=ExtResource("5_o5aog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.9832, 0, 0)
+
+[node name="Ground-giant2" parent="GroundNodes" instance=ExtResource("5_o5aog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.83522, 0, 0)
+
+[node name="Ground-long" parent="GroundNodes" instance=ExtResource("6_w52bo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.0477, 4.00597, 0)
+
+[node name="Ground-long2" parent="GroundNodes" instance=ExtResource("6_w52bo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.9531, 7.06518, 0)
+
+[node name="Ground-med" parent="GroundNodes" instance=ExtResource("7_lwttg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.34, 10.1721, 0)
+
+[node name="Ground-med2" parent="GroundNodes" instance=ExtResource("7_lwttg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.645, 6.17923, 0)
+
+[node name="Ground-med3" parent="GroundNodes" instance=ExtResource("7_lwttg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 167.979, 6.17923, 0)
+
+[node name="Ground-med4" parent="GroundNodes" instance=ExtResource("7_lwttg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.956, 6.17923, 0)
+
+[node name="Ground-short" parent="GroundNodes" instance=ExtResource("8_rxje8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.058, 11.6096, 0)
+
+[node name="WallNodes" type="Node3D" parent="."]
+
+[node name="Back Wall" parent="WallNodes" instance=ExtResource("7_sx1gy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -160, 0, -20)
+skeleton = NodePath("../..")
+
+[node name="Back Wall2" parent="WallNodes" instance=ExtResource("7_sx1gy")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -16, 0, -60)
+skeleton = NodePath("../..")
+
+[node name="BackWall-t2" parent="WallNodes" instance=ExtResource("3_wfi2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.781, 0, -20)
+skeleton = NodePath("../..")
+
+[node name="BackWall-t4" parent="WallNodes" instance=ExtResource("3_wfi2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 420.392, 0, -20)
+skeleton = NodePath("../..")
+
+[node name="BackWall-t6" parent="WallNodes" instance=ExtResource("3_wfi2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 715.402, 0, -20)
+skeleton = NodePath("../..")
+
+[node name="BackWall-t3" parent="WallNodes" instance=ExtResource("3_wfi2e")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 279.271, 0, -60)
+skeleton = NodePath("../..")
+
+[node name="BackWall-t5" parent="WallNodes" instance=ExtResource("3_wfi2e")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 576.286, 0, -60)
+skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.932179, -0.156175, 0.326577, 0, 0.902149, 0.431425, -0.361999, -0.402165, 0.840964, -15.6695, 23.3725, 17.539)
@@ -159,12 +212,21 @@ outline_size = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.4354, 3.11466, 0)
 hint_text = "Shift or Left Mouse to shoot!"
 
+[node name="HintBox2" parent="Hints" instance=ExtResource("12_vbjgs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.77276, 3.11466, 0)
+hint_text = "Don't get knocked off!"
+
+[node name="HintBox3" parent="Hints" instance=ExtResource("12_vbjgs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.525, 3.11466, 0)
+hint_text = "Jump on wall to climb!"
+
 [node name="LevelEnd" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 295.32, 2.5366, 0)
 script = ExtResource("13_vjw3x")
 hint_text = "Reporting for duty!"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEnd"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 284.727, 0, 0)
 shape = SubResource("BoxShape3D_16v37")
 
 [node name="SFXEntered" type="AudioStreamPlayer" parent="LevelEnd"]
@@ -185,7 +247,7 @@ one_shot = true
 [node name="SFX" type="Node" parent="."]
 
 [node name="SFXMusic" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("15_7u0mv")
+stream = ExtResource("12_6wd3f")
 volume_db = -18.0
 
 [node name="SFXStart" type="AudioStreamPlayer" parent="SFX"]
@@ -203,9 +265,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorBoundary"]
 shape = SubResource("WorldBoundaryShape3D_fv87w")
-
-[node name="BossBot" parent="." instance=ExtResource("18_e5dts")]
-transform = Transform3D(0.0546016, 0, -0.998508, 0, 1, 0, 0.998508, 0, 0.0546016, 309.498, 1.59867, 0.0637717)
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 visible = false
@@ -252,6 +311,257 @@ theme_override_fonts/normal_font = ExtResource("11_8tn13")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[center]ROLLBOT  -- PAUSED[/center]"
+
+[node name="Drones" type="Node3D" parent="."]
+process_mode = 1
+
+[node name="DroneBot" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.442442, 2, 0)
+max_x = 10.0
+
+[node name="DroneBot2" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2868, 2, 0)
+max_x = 5.0
+
+[node name="DroneBot3" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.759, 2, 0)
+max_x = 2.0
+
+[node name="DroneBot4" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.8979, 2.88219, 0)
+max_x = 1.0
+
+[node name="DroneBot5" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.0153, 2, 0)
+max_x = 2.8
+x_speed = 0.05
+
+[node name="DroneBot6" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.7892, 2, 0)
+max_x = 3.5
+
+[node name="DroneBot12" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.9293, 6.21379, 0)
+max_x = 2.0
+
+[node name="DroneBot13" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.2643, 6.56401, 0)
+max_x = 2.0
+x_speed = 0.05
+
+[node name="DroneBot7" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9217, 1.70234, 0)
+
+[node name="DroneBot8" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.5503, 2.49768, 0)
+max_x = 5.0
+
+[node name="DroneBot14" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.5503, 9.15515, 0)
+max_x = 2.0
+
+[node name="DroneBot15" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.647, 9.15515, 0)
+max_x = 2.0
+
+[node name="DroneBot16" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.56, 12.6662, 0)
+max_x = 2.0
+
+[node name="DroneBot9" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.507, 2, 0)
+max_x = 5.0
+
+[node name="DroneBot10" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.772, 2.8158, 0)
+max_x = 5.0
+max_y = 2.0
+y_speed = 0.04
+
+[node name="DroneBot11" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.625, 2, 0)
+max_x = 2.0
+
+[node name="DroneBot18" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.252, 2, 0)
+max_x = 2.0
+
+[node name="DroneBot19" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.899, 7.99216, 0)
+max_x = 6.0
+
+[node name="DroneBot20" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168.384, 7.99216, 0)
+max_x = 6.0
+
+[node name="DroneBot21" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 184.397, 7.99216, 0)
+max_x = 6.0
+
+[node name="DroneBot22" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.897, 1.09867, 0)
+max_x = 25.0
+x_speed = 0.2
+max_y = 2.0
+y_speed = 0.02
+
+[node name="DroneBot25" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 242.736, 1.09867, 0)
+max_x = 25.0
+x_speed = 0.2
+max_y = 2.0
+y_speed = 0.02
+
+[node name="DroneBot27" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 269.342, 1.09867, 0)
+max_x = 25.0
+x_speed = 0.2
+max_y = 2.0
+y_speed = 0.02
+
+[node name="DroneBot28" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 427.657, 1.22177, 0.295059)
+max_x = 25.0
+x_speed = 0.2
+max_y = 2.0
+y_speed = 0.02
+
+[node name="DroneBot17" parent="Drones" instance=ExtResource("17_n7frw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.047, 13.2326, 0)
+max_x = 2.0
+
+[node name="DroneBotBounce" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 312.677, 1.34818, 0)
+lock_x = true
+lock_y = false
+max_y = 4.0
+y_speed = 0.1
+
+[node name="DroneBotBounce2" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 319.264, 1.34818, 0)
+lock_x = true
+lock_y = false
+max_y = 4.0
+y_speed = 0.1
+
+[node name="DroneBotBounce3" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 326.876, 1.34818, 0)
+lock_x = true
+lock_y = false
+max_y = 4.0
+y_speed = 0.1
+
+[node name="DroneBotBounce8" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 427.938, 2.45067, 0)
+lock_x = true
+lock_y = false
+max_y = 4.0
+y_speed = 0.1
+
+[node name="DroneBotBounce11" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 451.675, 2.45067, 0)
+lock_x = true
+lock_y = false
+max_y = 4.0
+y_speed = 0.1
+
+[node name="DroneBotBounce13" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 457.039, 2.45067, 0)
+lock_x = true
+lock_y = false
+max_y = 4.0
+y_speed = 0.1
+
+[node name="DroneBotBounce9" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 430.964, 2.45067, 0)
+lock_x = true
+lock_y = false
+max_y = 5.0
+y_speed = 0.1
+
+[node name="DroneBotBounce12" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 454.803, 2.45067, 0)
+lock_x = true
+lock_y = false
+max_y = 5.0
+y_speed = 0.1
+
+[node name="DroneBotBounce10" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 434.057, 2.45067, 0)
+lock_x = true
+lock_y = false
+max_y = 4.0
+y_speed = 0.1
+
+[node name="DroneBotBounce4" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 333.519, 1.34818, 0)
+lock_x = true
+lock_y = false
+max_y = 4.0
+y_speed = 0.1
+
+[node name="DroneBotBounce5" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 351.648, 1.85933, 0)
+lock_x = true
+lock_y = false
+max_y = 3.0
+y_speed = 0.1
+
+[node name="DroneBotBounce6" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 356.015, 1.85933, 0)
+lock_x = true
+lock_y = false
+max_y = 3.0
+y_speed = 0.12
+
+[node name="DroneBotBounce7" parent="Drones" instance=ExtResource("21_okwhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 360.246, 1.85933, 0)
+lock_x = true
+lock_y = false
+max_y = 3.0
+y_speed = 0.14
+
+[node name="DroneSwayBot" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 375.751, 2, 0)
+z_speed = 0.08
+
+[node name="DroneSwayBot8" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 439.964, 2.5, 0)
+z_speed = 0.08
+
+[node name="DroneSwayBot11" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 442.954, 2.5, 0)
+z_speed = 0.08
+
+[node name="DroneSwayBot9" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 461.189, 2.5, 0)
+z_speed = 0.1
+
+[node name="DroneSwayBot10" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 446.102, 2.5, 0)
+z_speed = 0.1
+
+[node name="DroneSwayBot2" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 379.309, 2, 0)
+z_speed = 0.1
+
+[node name="DroneSwayBot3" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 382.595, 2, 0)
+
+[node name="DroneSwayBot4" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 391.226, 2, 0)
+max_z = 6.0
+
+[node name="DroneSwayBot5" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 393.849, 2, 0)
+
+[node name="DroneSwayBot6" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 396.383, 2, 0)
+max_z = 6.0
+
+[node name="DroneSwayBot7" parent="Drones" instance=ExtResource("22_t1atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6154, 2, 0)
+max_z = 6.0
 
 [connection signal="body_entered" from="LevelEnd" to="LevelEnd" method="_on_body_entered"]
 [connection signal="timeout" from="Timers/StartMusic" to="." method="_on_start_music_timeout"]
