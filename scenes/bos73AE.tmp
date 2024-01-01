@@ -4,8 +4,8 @@
 [ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="1_uc0vw"]
 
 [sub_resource type="Gradient" id="Gradient_m5n0n"]
-offsets = PackedFloat32Array(0, 0.327511, 0.563319, 0.997817, 1)
-colors = PackedColorArray(1, 1, 0, 1, 0.934994, 0.0518118, 5.77569e-07, 1, 0.85619, 0.00083478, 0.897151, 1, 0.458837, 0.040162, 1, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.268559, 0.548035, 0.823144, 1)
+colors = PackedColorArray(0, 0, 1, 1, 0.924305, 1.83859e-05, 0.628724, 1, 0.713063, 0, 0.168038, 1, 0, 0.765983, 0.202849, 1, 1, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htt5d"]
 albedo_color = Color(0, 0.6, 0.682353, 1)
@@ -40,8 +40,7 @@ radial_segments = 10
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 script = ExtResource("1_ruby1")
 eye_ramp = SubResource("Gradient_m5n0n")
-no_speak_color = Color(0.286275, 0.286275, 0, 1)
-dialog = Array[String](["The system is under attack - so many entities!", "", "Clear a path to Field Station 4.", "We are loved."])
+dialog = Array[String](["Glad you are here! We're under attack!", "There are so many entities!", ""])
 eyes = NodePath("EyeMesh")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
@@ -61,40 +60,33 @@ mesh = SubResource("CylinderMesh_yjsaj")
 
 [node name="HintLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
-visible = false
 billboard = 1
 double_sided = false
 alpha_antialiasing_mode = 1
 modulate = Color(0.701961, 0.854902, 1, 1)
+text = "A to move left, 
+B to move right"
 font = ExtResource("1_uc0vw")
-font_size = 60
+font_size = 80
 outline_size = 0
-autowrap_mode = 2
 
 [node name="TimerStart" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
 
 [node name="TimerText" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="TimerText2" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="TimerText3" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="TimerTalking" type="Timer" parent="."]
 
-[node name="TimerEnd" type="Timer" parent="."]
-wait_time = 5.0
-
 [connection signal="timeout" from="TimerStart" to="." method="_on_timer_start_timeout"]
 [connection signal="timeout" from="TimerText" to="." method="_on_timer_text_timeout"]
 [connection signal="timeout" from="TimerText2" to="." method="_on_timer_text_2_timeout"]
-[connection signal="timeout" from="TimerText3" to="." method="_on_timer_text_3_timeout"]
 [connection signal="timeout" from="TimerTalking" to="." method="_on_timer_talking_timeout"]
-[connection signal="timeout" from="TimerEnd" to="." method="_on_timer_end_timeout"]

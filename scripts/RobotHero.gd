@@ -116,7 +116,9 @@ func _handle_rotation():
 				$BodyParts.rotation_degrees.z+=.5
 
 func _handle_z():
-	global_position.z = move_toward(global_position.z, 0 , .001)
+	if global_position.z != 0:
+		print("Changing global z")
+		global_position.z = move_toward(global_position.z, 0 , .001)
 
 	
 func _handle_shoot():

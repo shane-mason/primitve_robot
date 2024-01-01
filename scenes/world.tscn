@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_omtkj"]
 [ext_resource type="PackedScene" uid="uid://cjloldcop32bq" path="res://scenes/ground_med.tscn" id="1_qk0ek"]
-[ext_resource type="PackedScene" uid="uid://k4qo3y8eg3im" path="res://scenes/world2.tscn" id="2_1afys"]
 [ext_resource type="PackedScene" uid="uid://cwckk8n5klfeh" path="res://scenes/ground_long.tscn" id="2_kvq4v"]
+[ext_resource type="PackedScene" uid="uid://vqd3u1ktnau5" path="res://scenes/world-middle.tscn" id="2_rtuw4"]
 [ext_resource type="PackedScene" uid="uid://dduqeq0lryqi8" path="res://scenes/ground_short.tscn" id="3_v1ghm"]
 [ext_resource type="PackedScene" uid="uid://bp1dxpkbn2hkx" path="res://scenes/robot_hero.tscn" id="4_2yrvv"]
 [ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="4_d4xdw"]
@@ -79,7 +79,7 @@ size = Vector3(4, 4, 4)
 [node name="World" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_omtkj")
-swap_scene = ExtResource("2_1afys")
+swap_scene = ExtResource("2_rtuw4")
 
 [node name="GroundNodes" type="Node3D" parent="."]
 
