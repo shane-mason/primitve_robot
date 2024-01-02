@@ -9,6 +9,7 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	eyes.mesh.material.albedo_color = no_speak_color
 	$TimerStart.start()
 
 

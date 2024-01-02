@@ -15,6 +15,10 @@ run/main_scene="res://scenes/start_world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="D:/codes/RunBot/runthrough.avi"
+
 [input]
 
 move_right={

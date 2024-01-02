@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8egekd2icund"]
+[gd_scene load_steps=15 format=3 uid="uid://b3bniwtil54eh"]
 
-[ext_resource type="Script" path="res://scripts/start_world.gd" id="1_ylh7o"]
-[ext_resource type="AudioStream" uid="uid://cxjynno717p8d" path="res://sfx/bot-music3.ogg" id="3_52bsv"]
-[ext_resource type="PackedScene" uid="uid://6rebtw1ldnf0" path="res://scenes/pause_menu.tscn" id="4_4wceo"]
-[ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="5_faeqr"]
-[ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="7_7rfwb"]
+[ext_resource type="Script" path="res://scripts/middle_world.gd" id="1_vs2ax"]
+[ext_resource type="PackedScene" uid="uid://c8egekd2icund" path="res://scenes/start_world.tscn" id="2_4g6uo"]
+[ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="2_u8gk6"]
+[ext_resource type="AudioStream" uid="uid://cxjynno717p8d" path="res://sfx/bot-music3.ogg" id="3_5lg4q"]
+[ext_resource type="PackedScene" uid="uid://6rebtw1ldnf0" path="res://scenes/pause_menu.tscn" id="4_411dx"]
+[ext_resource type="PackedScene" uid="uid://bkh2fetxh3n5v" path="res://scenes/boss_bot.tscn" id="5_axsb0"]
+[ext_resource type="PackedScene" uid="uid://b2pktcttlif2b" path="res://scenes/robot_dummy.tscn" id="6_kxln7"]
+[ext_resource type="PackedScene" uid="uid://dqwjxpsqls8sf" path="res://scenes/ground_longest.tscn" id="7_5w8ml"]
+[ext_resource type="FontFile" uid="uid://c376ilnvskoer" path="res://styles/256 bytes.otf" id="8_7wspy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0i6q"]
 sky_top_color = Color(0.596078, 0.0196078, 0.470588, 1)
@@ -30,25 +34,27 @@ volumetric_fog_density = 0.01
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fv87w"]
 
-[node name="StartWorld" type="Node3D"]
+[node name="EndWorld" type="Node3D"]
 process_mode = 3
-script = ExtResource("1_ylh7o")
+script = ExtResource("1_vs2ax")
+swap_scene = ExtResource("2_4g6uo")
 
 [node name="WallNodes" type="Node3D" parent="."]
+script = ExtResource("1_vs2ax")
 
-[node name="Back Wall" parent="WallNodes" instance=ExtResource("7_7rfwb")]
+[node name="Back Wall" parent="WallNodes" instance=ExtResource("2_u8gk6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 skeleton = NodePath("../..")
 
-[node name="Back Wall3" parent="WallNodes" instance=ExtResource("7_7rfwb")]
+[node name="Back Wall3" parent="WallNodes" instance=ExtResource("2_u8gk6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 287.823, 0, -20)
 skeleton = NodePath("../..")
 
-[node name="Back Wall2" parent="WallNodes" instance=ExtResource("7_7rfwb")]
+[node name="Back Wall2" parent="WallNodes" instance=ExtResource("2_u8gk6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 143.678, 0, -60)
 skeleton = NodePath("../..")
 
-[node name="Back Wall4" parent="WallNodes" instance=ExtResource("7_7rfwb")]
+[node name="Back Wall4" parent="WallNodes" instance=ExtResource("2_u8gk6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 428.515, 0, -60)
 skeleton = NodePath("../..")
 
@@ -78,7 +84,7 @@ one_shot = true
 [node name="SFX" type="Node" parent="."]
 
 [node name="SFXMusic" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("3_52bsv")
+stream = ExtResource("3_5lg4q")
 volume_db = -10.0
 autoplay = true
 
@@ -88,31 +94,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorBoundary"]
 shape = SubResource("WorldBoundaryShape3D_fv87w")
 
-[node name="PauseMenu" parent="." instance=ExtResource("4_4wceo")]
+[node name="PauseMenu" parent="." instance=ExtResource("4_411dx")]
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.846314, 0, -0.532684, 0, 1, 0, 0.532684, 0, 0.846314, -37.5725, 0, 2.17972)
+transform = Transform3D(0.977596, 0, 0.210489, 0, 1, 0, -0.210489, 0, 0.977596, 75.3086, 3.24415, 4.20828)
+
+[node name="BossBot" parent="." instance=ExtResource("5_axsb0")]
+transform = Transform3D(-5.24537e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.24537e-08, 76.9314, 1.82438, 0.0368129)
+dialog = Array[String](["You got through - nice work lil bot!", "", "There is much work to do, but we can do it together.", "We are loved."])
+
+[node name="RobotDummy" parent="." instance=ExtResource("6_kxln7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.1167, 1.88301, 0.0935762)
+dialog = Array[String](["", "That's a lot of entities -how can we save the system?", "", "We are loved."])
+
+[node name="Ground-longest" parent="." instance=ExtResource("7_5w8ml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.357, 0, 0)
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 25.0
+one_shot = true
+autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -85.5
-offset_top = -70.0
-offset_right = 85.5
-offset_bottom = -26.0
-grow_horizontal = 2
+offset_left = 8.0
+offset_top = -36.0
+offset_right = 410.0
+offset_bottom = -8.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("5_faeqr")
-theme_override_font_sizes/font_size = 30
-text = "START NOW"
+theme_override_fonts/font = ExtResource("8_7wspy")
+theme_override_font_sizes/font_size = 23
+text = "End the Game: Press Enter or Space anytime"
 
 [connection signal="timeout" from="Timers/StartMusic" to="." method="_on_start_music_timeout"]
 [connection signal="timeout" from="Timers/DeadTimer" to="." method="_on_dead_timer_timeout"]
 [connection signal="timeout" from="Timers/LevelEndTimer" to="." method="_on_level_end_timer_timeout"]
 [connection signal="body_entered" from="FloorBoundary" to="." method="_on_floor_boundary_body_entered"]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

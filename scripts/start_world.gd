@@ -12,3 +12,7 @@ func _process(delta):
 		get_tree().change_scene_to_file("res://scenes/world.tscn")
 	elif Input.is_action_just_pressed("quit"):                   
 		get_tree().quit() 
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/world.tscn")

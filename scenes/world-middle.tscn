@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://vqd3u1ktnau5"]
+[gd_scene load_steps=15 format=3 uid="uid://vqd3u1ktnau5"]
 
 [ext_resource type="Script" path="res://scripts/middle_world.gd" id="1_hjlxe"]
 [ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="2_d1hni"]
+[ext_resource type="PackedScene" uid="uid://k4qo3y8eg3im" path="res://scenes/world2.tscn" id="2_na0tb"]
 [ext_resource type="AudioStream" uid="uid://cxjynno717p8d" path="res://sfx/bot-music3.ogg" id="3_l3lai"]
 [ext_resource type="PackedScene" uid="uid://6rebtw1ldnf0" path="res://scenes/pause_menu.tscn" id="4_l01yf"]
 [ext_resource type="PackedScene" uid="uid://bkh2fetxh3n5v" path="res://scenes/boss_bot.tscn" id="5_e83eg"]
@@ -36,6 +37,7 @@ volumetric_fog_density = 0.01
 [node name="MiddleWorld" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_hjlxe")
+swap_scene = ExtResource("2_na0tb")
 
 [node name="WallNodes" type="Node3D" parent="."]
 script = ExtResource("1_hjlxe")
@@ -96,7 +98,7 @@ shape = SubResource("WorldBoundaryShape3D_fv87w")
 visible = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.950076, 0, -0.31202, 0, 1, 0, 0.31202, 0, 0.950076, 73.152, 3.13535, 3.25624)
+transform = Transform3D(0.994366, 0, 0.106004, 0, 1, 0, -0.106004, 0, 0.994366, 75.056, 3.24708, 4.07358)
 
 [node name="BossBot" parent="." instance=ExtResource("5_e83eg")]
 transform = Transform3D(-5.24537e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.24537e-08, 76.9314, 1.82438, 0.0368129)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://k4qo3y8eg3im"]
+[gd_scene load_steps=38 format=3 uid="uid://k4qo3y8eg3im"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_ppgaj"]
-[ext_resource type="PackedScene" uid="uid://c8egekd2icund" path="res://scenes/start_world.tscn" id="2_d3gkn"]
+[ext_resource type="PackedScene" uid="uid://b3bniwtil54eh" path="res://scenes/world-end.tscn" id="2_6kwcg"]
 [ext_resource type="PackedScene" uid="uid://d1aac4vrmjj1q" path="res://scenes/back_wall_t2.tscn" id="3_wfi2e"]
 [ext_resource type="PackedScene" uid="uid://dqwjxpsqls8sf" path="res://scenes/ground_longest.tscn" id="4_ue0g8"]
 [ext_resource type="PackedScene" uid="uid://chberix27la8a" path="res://scenes/ground_giant.tscn" id="5_o5aog"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://diyvqabptc57" path="res://sfx/start.wav" id="16_exw1m"]
 [ext_resource type="PackedScene" uid="uid://b6dcu2jmpom05" path="res://scenes/drone_bot.tscn" id="17_n7frw"]
 [ext_resource type="AudioStream" uid="uid://bic13l6hsojea" path="res://sfx/thud.wav" id="17_pmngy"]
+[ext_resource type="PackedScene" uid="uid://bkh2fetxh3n5v" path="res://scenes/boss_bot.tscn" id="18_e5dts"]
 [ext_resource type="FontFile" uid="uid://c3q6tcjpudthr" path="res://styles/rexlia rg.otf" id="19_evnor"]
 [ext_resource type="PackedScene" uid="uid://bjxjohjwg815d" path="res://scenes/drone_bot_bounce.tscn" id="21_okwhh"]
 [ext_resource type="PackedScene" uid="uid://djb8dt6k7jyoy" path="res://scenes/drone_sway_bot.tscn" id="22_t1atn"]
@@ -82,7 +83,7 @@ size = Vector3(4, 4, 4)
 [node name="World" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_ppgaj")
-swap_scene = ExtResource("2_d3gkn")
+swap_scene = ExtResource("2_6kwcg")
 
 [node name="RobotHero" parent="." instance=ExtResource("8_pk1ab")]
 unique_name_in_owner = true
@@ -256,7 +257,7 @@ hint_text = "Oh my - that is a lot of entities!"
 [node name="LevelEnd" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 501.974, 2.5366, 0)
 script = ExtResource("13_vjw3x")
-hint_text = "Reporting for duty!"
+hint_text = "I made it through!"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEnd"]
 shape = SubResource("BoxShape3D_16v37")
@@ -612,9 +613,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 393.849, 2, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 396.383, 2, 0)
 max_z = 6.0
 
-[node name="DroneSwayBot7" parent="Drones" instance=ExtResource("22_t1atn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6154, 2, 0)
-max_z = 6.0
+[node name="BossBot" parent="." instance=ExtResource("18_e5dts")]
+transform = Transform3D(-5.24537e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.24537e-08, 507.396, 1.73374, -0.0163093)
 
 [connection signal="body_entered" from="LevelEnd" to="LevelEnd" method="_on_body_entered"]
 [connection signal="timeout" from="Timers/StartMusic" to="." method="_on_start_music_timeout"]
