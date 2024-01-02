@@ -19,7 +19,6 @@ func _process(delta):
 		global_position.x = move_toward(followNode.global_position.x+x_pad,followNode.global_position.x, _x_speed)	
 		var y_diff = abs(global_position.y+y_pad) - abs(followNode.global_position.y)
 		
-		print (y_diff)
 		
 		if abs(y_diff) > 2:
 			global_position.y = move_toward(global_position.y, followNode.global_position.y+y_pad, _y_speed)

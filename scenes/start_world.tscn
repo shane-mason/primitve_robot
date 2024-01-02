@@ -96,17 +96,17 @@ transform = Transform3D(0.846314, 0, -0.532684, 0, 1, 0, 0.532684, 0, 0.846314, 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -85.5
-offset_top = -70.0
-offset_right = 85.5
-offset_bottom = -26.0
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -22.0
+offset_right = 86.0
+offset_bottom = 22.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_faeqr")
 theme_override_font_sizes/font_size = 30
 text = "START NOW"

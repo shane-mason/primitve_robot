@@ -255,7 +255,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 416.854, 3.11466, 0)
 hint_text = "Oh my - that is a lot of entities!"
 
 [node name="LevelEnd" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 501.974, 2.5366, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 496.396, 2.5366, 0)
 script = ExtResource("13_vjw3x")
 hint_text = "I made it through!"
 
