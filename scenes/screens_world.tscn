@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://ys70r2q41s0"]
+
+[ext_resource type="Script" path="res://scripts/start_world.gd" id="1_cwkl8"]
+[ext_resource type="PackedScene" uid="uid://bobn80h6wpkot" path="res://scenes/back_wall.tscn" id="2_0g487"]
+[ext_resource type="AudioStream" uid="uid://cxjynno717p8d" path="res://sfx/bot-music3.ogg" id="3_2q7kp"]
+[ext_resource type="FontFile" uid="uid://c3q6tcjpudthr" path="res://styles/rexlia rg.otf" id="4_qxqqh"]
+[ext_resource type="FontFile" uid="uid://bllgrmu2rkafu" path="res://styles/astron boy.otf" id="5_hfcxm"]
+[ext_resource type="PackedScene" uid="uid://b2pktcttlif2b" path="res://scenes/robot_dummy.tscn" id="6_u5hm3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0i6q"]
+sky_top_color = Color(0.596078, 0.0196078, 0.470588, 1)
+sky_horizon_color = Color(0.85098, 0.431373, 0.741176, 1)
+ground_bottom_color = Color(0.270588, 0, 0.372549, 1)
+ground_horizon_color = Color(0.852605, 0.430173, 0.740552, 1)
+
+[sub_resource type="Sky" id="Sky_8itwd"]
+sky_material = SubResource("ProceduralSkyMaterial_a0i6q")
+
+[sub_resource type="Environment" id="Environment_6d782"]
+background_mode = 2
+sky = SubResource("Sky_8itwd")
+tonemap_mode = 3
+glow_bloom = 0.36
+fog_light_color = Color(0.541176, 0.533333, 0.67451, 1)
+fog_light_energy = 0.5
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_ec7mm"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fv87w"]
+
+[node name="ScreenWorld" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_cwkl8")
+
+[node name="WallNodes" type="Node3D" parent="."]
+
+[node name="Back Wall" parent="WallNodes" instance=ExtResource("2_0g487")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+skeleton = NodePath("../..")
+
+[node name="Back Wall3" parent="WallNodes" instance=ExtResource("2_0g487")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 287.823, 0, -20)
+skeleton = NodePath("../..")
+
+[node name="Back Wall2" parent="WallNodes" instance=ExtResource("2_0g487")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 143.678, 0, -60)
+skeleton = NodePath("../..")
+
+[node name="Back Wall4" parent="WallNodes" instance=ExtResource("2_0g487")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 428.515, 0, -60)
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.932179, -0.156175, 0.326577, 0, 0.902149, 0.431425, -0.361999, -0.402165, 0.840964, -15.6695, 23.3725, 17.539)
+shadow_bias = 2.289
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6d782")
+camera_attributes = SubResource("CameraAttributesPhysical_ec7mm")
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="StartMusic" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="DeadTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+
+[node name="LevelEndTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="SFXMusic" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_2q7kp")
+volume_db = -10.0
+autoplay = true
+
+[node name="FloorBoundary" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorBoundary"]
+shape = SubResource("WorldBoundaryShape3D_fv87w")
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.5
+offset_top = 49.0
+offset_right = 184.5
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("4_qxqqh")
+bbcode_enabled = true
+text = "Controls:
+
+Right: 		D or Right Arrow
+Left:			A or Left Arrow
+Shoot:		Shift or Left Mouse Button
+Jump:		Space
+Pause:		Escape
+
+Press Enter to Start or Q to Quit"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -354.0
+offset_top = -326.0
+offset_right = 460.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.835294, 0, 0.796078, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("5_hfcxm")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[center]RollBot[/center]"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -22.0
+offset_right = 86.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_hfcxm")
+theme_override_font_sizes/font_size = 30
+text = "START NOW"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.896633, -0.0616222, -0.438465, 0, 0.990268, -0.139173, 0.442774, 0.124787, 0.887907, -36.0922, -2.8585, 2.50452)
+
+[node name="RobotDummy" parent="." instance=ExtResource("6_u5hm3")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -35.3773, -2.98573, 0.933825)
+no_speak_color = Color(0.309804, 0.541176, 1, 1)
+
+[connection signal="timeout" from="Timers/StartMusic" to="." method="_on_start_music_timeout"]
+[connection signal="timeout" from="Timers/DeadTimer" to="." method="_on_dead_timer_timeout"]
+[connection signal="timeout" from="Timers/LevelEndTimer" to="." method="_on_level_end_timer_timeout"]
+[connection signal="body_entered" from="FloorBoundary" to="." method="_on_floor_boundary_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

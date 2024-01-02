@@ -13,7 +13,7 @@ extends CharacterBody3D
 @export var shard_scene: PackedScene
 @export var start_paused = false
 @export var can_shoot = true
-@export var initial_hint = "A - Move Left\nB - Move Right"
+@export var initial_hint = "A - Move Left\nD - Move Right"
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") + 16
