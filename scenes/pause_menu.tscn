@@ -50,3 +50,19 @@ bbcode_enabled = true
 text = "[center]RollBot
 Attack of the Entities[/center]"
 metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -247.5
+offset_top = -51.0
+offset_right = 247.5
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0.623529, 0.839216, 1, 1)
+bbcode_enabled = true
+text = "[center]2024 - Gameplay, graphics & sound by wrong.dog studios[/center]"
